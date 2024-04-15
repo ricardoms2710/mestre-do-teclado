@@ -7,7 +7,7 @@ var Falhar = document.getElementById('Falhar');
 var Perder = document.getElementById('Perder');
 var Passar_de_Fase = document.getElementById('Passar_de_Fase');
 var Fase_1 = document.getElementById('Fase_1');
-    console.log("Fase 3 MP3->WAV", Fase_1);    
+    console.log(Fase_1);
     if ( Fase_1 ) Fase_1.volume = 0.35;
 
 const canvas = document.getElementById('gameCanvas');
