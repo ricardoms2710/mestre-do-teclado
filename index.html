@@ -3,15 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jogo para aprender digitação de palavras em português">
+    <meta name="keywords" content="HTML, CSS, JavaScript, Jogo, digitação">
+    <meta name="author" content="Ricardo de Magalhães Simões">
+    <meta name="application-name" content="Mestre do Teclado">
     <script>
         if (window.location.protocol === 'https:') 
         {
-        // The webpage is being opened locally
+            document.write("<meta name='server' content='GitHub'>");
             document.write("<base href='https://ricardoms2710.github.io/mestre-do-teclado/'>");
-        } else {
-            document.write("<meta author='Ricardo de Magalhães Simões'>");
+        } 
+        else 
+        {
+            document.write("<meta name='server' content='localhost'>");
         }
     </script>
+    
     <title>Mestre do Teclado - Jogo da DigitAção</title>
     <link rel="stylesheet" href="digitranix.css">
 </head>
