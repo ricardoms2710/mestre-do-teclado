@@ -121,6 +121,7 @@ var taxa_queda = 100/60; // taxa_queda = pixels / segundos
 var limite_altura = canvas.height + (fontSize/2);
 var atualizando_palavra = false;
 var wordX_MaxPos = 0;
+var tempo_nova_palavra = 3000;
 function update() 
 {
     draw();
@@ -144,11 +145,12 @@ function update()
                     wordXPosition = Math.floor(Math.random() * (wordX_MaxPos - 20)) + 20;
                     
                 });
-            }, 3000);
+            }, tempo_nova_palavra);
         }
     } 
     else 
     {
+        if ( tempo_nova_palavra == 3000 ) { tempo_nova_palavra = 1000; }
         wordYPosition += taxa_queda; // Move the word downward at a rate of 150 pixels per second (assuming 60 frames per second)
         if (wordYPosition > limite_altura ) 
         {

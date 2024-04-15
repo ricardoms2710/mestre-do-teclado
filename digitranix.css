@@ -1,8 +1,21 @@
+@font-face 
+{
+    font-family: 'HeMan-Branco'; 
+    src: url('Fonte/He-Man-Branco.ttf') format('truetype');
+}
+
+@font-face 
+{
+    font-family: 'HeMan-Preto'; 
+    src: url('Fonte/He-Man-Preto.ttf') format('truetype');
+}
+
 * 
 { 
     margin: 0; padding: 0; 
     font-size: 12px; font-family: Arial; color: black; background-color: white;
     box-sizing: border-box; 
+    background-color: rgba(0, 0, 0, 0.0);
 }
 
 body      
@@ -11,14 +24,25 @@ body
     display: flex;
     justify-content: center;
     align-items: center;
+
+    background-image: url('Imagem/Cenário.jpg'); /* Specify the path to your image */
+    background-size: cover; /* Cover the entire viewport */
+    background-position: center; /* Center the background image */
 }
 
-h1,h2 { text-align: center; }
-h1 { font-size: 4rem; }
-h2 { font-size: 3rem; }
-span { font-size: inherit; }
+div {  }
 
-input[type="text"] { font-size: 2rem; padding: 0.4rem; margin-top: 0.8rem; }
+h1,h2 { text-align: left; }
+h1 { font-size: 5rem; font-family: "HeMan-Branco"; }
+h2 { font-size: 3.5rem; font-family: "HeMan-Preto"; }
+h3 { font-size: 2rem; text-align: right; }
+span { font-size: inherit; font-family: inherit; }
+
+input[type="text"] 
+{ 
+    font-size: 2rem; padding: 0.4rem; margin-top: 0.8rem; 
+    background-color: rgba(255, 255, 255, 0.75);
+}
 
 .azul     { color: blue; }
 .vermelho { color: red; }
@@ -27,6 +51,7 @@ input[type="text"] { font-size: 2rem; padding: 0.4rem; margin-top: 0.8rem; }
 
 .pagina {  }
 .titulo {  }
+.Legenda { font-size: 2rem; }
 
 .container 
 {
@@ -60,7 +85,7 @@ button { width: 11rem; height: 3rem; font-size: 1.5rem; }
 #resetBtn    { background-color: rgb(255, 136, 136); }
 
 #score {
-    font-size: 1.5rem;
+    font-size: 2rem;
     margin-top: 0.8rem;
 }
 
