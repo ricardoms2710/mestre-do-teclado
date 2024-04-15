@@ -3,7 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <base href="https://ricardoms2710.github.io/mestre-do-teclado/">
+    <script>
+        if (window.location.protocol === 'https:') 
+        {
+        // The webpage is being opened locally
+            document.write("<base href='https://ricardoms2710.github.io/mestre-do-teclado/'>");
+        } else {
+            document.write("<meta author='Ricardo de Magalhães Simões'>");
+        }
+    </script>
     <title>Mestre do Teclado - Jogo da DigitAção</title>
     <link rel="stylesheet" href="digitranix.css">
 </head>
