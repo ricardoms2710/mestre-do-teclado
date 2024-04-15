@@ -7,7 +7,7 @@ var Falhar = document.getElementById('Falhar');
 var Perder = document.getElementById('Perder');
 var Passar_de_Fase = document.getElementById('Passar_de_Fase');
 var Fase_1 = document.getElementById('Fase_1');
-    Fase_1.volume = 0.35;
+    if ( Fase_1 ) Fase_1.volume = 0.35;
 
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
@@ -223,7 +223,7 @@ function Iniciar()
     {
         gameInterval = setInterval(function() { update(); }, 1000 / 60); // 60 frames per second
         startTimer();
-        Fase_1.play();
+        if ( Fase_1 ) Fase_1.play();
 
     }
 }
