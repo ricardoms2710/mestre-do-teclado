@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-    <!-- https://wiki.whatwg.org/wiki/MetaExtensions -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -30,84 +29,6 @@
     <!-- <base href="https://ricardoms2710.github.io/mestre-do-teclado/"> -->
     <title>Mestre do Teclado - Jogo da DigitAção</title>
     <link rel="icon" type="image/x-icon" href="Imagem/Teclado.png">
-    <link rel="stylesheet" href="digitranix.css">
+    <link rel="stylesheet" href="mestre.css">
 </head>
-<body>
-    <div class="pagina">
-        <div class="titulo centralizado">
-            <h1> Mestre do Teclado </h1>
-            <h2> Jogo da <span class="azul">Digit</span><span class="vermelho">Ação</span>! </h2>
-            <h3>Ricardo de Magalhães Simões</h3>
-            <h3>rmagalhaess@hotmail.com</h3>
-            <hr>
-        </div>
-        <div class="container">
-            <div class="left-panel centralizado">
-                <span class="Legenda">Digite as palavras: </span><br>
-                <input type="text" id="input" autocomplete="off" placeholder="digite aqui..."> <br>
-                <br>
-                <button id="startBtn">▶️ Começar</button>
-                <button id="pauseBtn">⏸️ Pausar</button><br>
-                <button id="continueBtn">➡️ Continuar</button>
-                <button id="resetBtn">🔄 Reiniciar</button>
-                <br>
-                <br>
-                <h2 id="score">Pontuação: <span id="score-value">0</span></h2>
-                <p id="timer">Tempo: <span id="timer-value">0</span> segundos</p>
-                <br><br><br><br><br>
-                <br><br>                
-                <!-- <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/0gO5Vbklho8yrBrUdHhuLH?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> -->
-                <!-- Badge Code - Do Not Change The Code -->
-                <a class="hitCounter" href="https://visitorshitcounter.com/" target="_blank" title="Hit counter" data-name="ccb1914fed9e624efde8c73fdb76c673|6|external|1|#0099cc|#f5f5f5|small|s-hit">Hit Counter</a><script>document.write("<script type='text/javascript' src='https://visitorshitcounter.com/js/hitCounter.js?v="+Date.now()+"'><\/script>");</script>
-                <!-- Badge Code End Here -->
-                <br><br>
-                <a href='https://www.free-counters.org/'>free Counters</a> <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=3f214a103466f20256bd7d1a93ea45d699a7cccd'></script>
-                <script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/1172289/t/6"></script>
-                <br><br>
-                <img src="https://ogp.me/logo.png" width="60" height="60">
-                <br><br>
-                Versão 0.1.2 (22.02)
-            </div>
-            <div class="right-panel">
-                <div id="countdown"></div>
-                <canvas id="gameCanvas"></canvas>
-            </div>
-            <div>
-                <div id="correctWords" class="listagem"> </div>
-                <div id="wrongWords" class="listagem"> </div>
-            </div>
-        </div>
-
-    </div>
-    
-    <audio id="Acertar_Facil" src="Audio/Acertar_Facil.wav"></audio>
-    <audio id="Acertar_Medio" src="Audio/Acertar_Medio.wav"></audio>
-    <audio id="Acertar_Dificil" src="Audio/Acertar_Dificil.wav"></audio>
-    <audio id="Ativar" src="Audio/Ativar.wav"></audio>
-    <audio id="Palavra" src="Audio/Palavra.wav"></audio>
-    <audio id="Falhar" src="Audio/Falhar.wav"></audio>
-    <audio id="Perder" src="Audio/Perder.wav"></audio>
-    <audio id="Passar_de_Fase" src="Audio/Passar_de_Fase.wav"></audio>
-    <audio id="Fase_1" src="Audio/Fase_1.mp3" loop></audio>
-
-    <script src="digitranix.js"></script>
-
-    <!-- Default Statcounter code for Mestre do Teclado
-    https://ricardoms2710.github.io/mestre-do-teclado -->
-    <script type="text/javascript">
-        var sc_project=12988572; 
-        var sc_invisible=1; 
-        var sc_security="d83afb51"; 
-        </script>
-        <script type="text/javascript"
-        src="https://www.statcounter.com/counter/counter.js"
-        async></script>
-        <noscript><div class="statcounter"><a title="web stats"
-        href="https://statcounter.com/" target="_blank"><img
-        class="statcounter"
-        src="https://c.statcounter.com/12988572/0/d83afb51/1/"
-        alt="web stats"
-        referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
-        <!-- End of Statcounter Code -->
-</body>
-</html>
+<body> <div class="pagina"> <div class="titulo centralizado"> <h1> Mestre do Teclado </h1> <h2> Jogo da <span class="azul">Digit</span><span class="vermelho">Ação</span>! </h2> <h3>Ricardo de Magalhães Simões</h3> <h3>rmagalhaess@hotmail.com</h3> <hr> </div> <div class="container"> <div class="left-panel centralizado"> <span class="Legenda">Digite as palavras: </span><br> <input type="text" id="input" autocomplete="off" placeholder="digite aqui..."> <br> <br> <button id="startBtn">▶️ Começar</button> <button id="pauseBtn">⏸️ Pausar</button><br> <button id="continueBtn">➡️ Continuar</button> <button id="resetBtn">🔄 Reiniciar</button> <br> <br> <h2 id="score">Pontuação: <span id="score-value">0</span></h2> <p id="timer">Tempo: <span id="timer-value">0</span> segundos</p> <br><br><br><br><br> <br><br> <!-- <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/0gO5Vbklho8yrBrUdHhuLH?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> --> <!-- Badge Code - Do Not Change The Code --> <a class="hitCounter" href="https://visitorshitcounter.com/" target="_blank" title="Hit counter" data-name="ccb1914fed9e624efde8c73fdb76c673|6|external|1|#0099cc|#f5f5f5|small|s-hit">Hit Counter</a><script>document.write("<script type='text/javascript' src='https://visitorshitcounter.com/js/hitCounter.js?v="+Date.now()+"'><\/script>");</script> <!-- Badge Code End Here --> <br><br> <a href='https://www.free-counters.org/'>free Counters</a> <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=3f214a103466f20256bd7d1a93ea45d699a7cccd'></script> <script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/1172289/t/6"></script> <br><br> <img src="https://ogp.me/logo.png" width="60" height="60"> <br><br> Versão 0.1.1 (20.23) </div> <div class="right-panel"> <div id="countdown"></div> <canvas id="gameCanvas"></canvas> </div> <div> <div id="correctWords" class="listagem"> </div> <div id="wrongWords" class="listagem"> </div> </div> </div> </div> <audio id="Acertar_Facil" src="Audio/Acertar_Facil.wav"></audio> <audio id="Acertar_Medio" src="Audio/Acertar_Medio.wav"></audio> <audio id="Acertar_Dificil" src="Audio/Acertar_Dificil.wav"></audio> <audio id="Ativar" src="Audio/Ativar.wav"></audio> <audio id="Palavra" src="Audio/Palavra.wav"></audio> <audio id="Falhar" src="Audio/Falhar.wav"></audio> <audio id="Perder" src="Audio/Perder.wav"></audio> <audio id="Passar_de_Fase" src="Audio/Passar_de_Fase.wav"></audio> <audio id="Fase_1" src="Audio/Fase_1.mp3" loop></audio> <script src="mestre.js"></script></body></html>
