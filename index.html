@@ -1,1 +1,158 @@
-<!DOCTYPE html><html lang="en"><head> <!-- https://wiki.whatwg.org/wiki/MetaExtensions --> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <meta name="application-name" content="Mestre do Teclado"> <meta name="description" content="Jogo para aprender digitação de palavras em português"> <meta name="keywords" content="HTML, CSS, JavaScript, Jogo, digitação"> <meta name="author" content="Ricardo de Magalhães Simões"> <meta property="og:title" content="Mestre do Teclado"> <meta property="og:description" content="Jogo para aprender digitação de palavras em português"> <meta property="og:image" content="https://ricardoms2710.github.io/mestre-do-teclado/Imagem/thumbnail.jpg"> <meta property="og:url" content="https://ricardoms2710.github.io/mestre-do-teclado/"> <meta property="og:type" content="website"> <script> if (window.location.protocol === 'https:') { document.write("<meta name='server' content='GitHub'>"); document.write("<base href='https://ricardoms2710.github.io/mestre-do-teclado/'>"); } else { document.write("<meta name='server' content='localhost'>"); } </script> <!-- <base href="https://ricardoms2710.github.io/mestre-do-teclado/"> --> <title>Mestre do Teclado - Jogo da DigitAção</title> <link rel="icon" type="image/x-icon" href="Imagem/Teclado.png"> <link rel="stylesheet" href="mestre.css"></head><body> <div class="pagina"> <div class="titulo centralizado"> <span class="url">https://ricardoms2710.github.io/mestre-do-teclado</span><br><br><img src="Imagem/mestre.png" width="640"><br> <h2> Jogo da <span class="azul">Digit</span><span class="vermelho">Ação</span>! </h2><h4>Versão: 0.2 - 22/04/2024</h4> <h3>Ricardo de Magalhães Simões</h3> <h3>rmagalhaess@hotmail.com</h3> <hr> </div> <div class="container"> <div class="left-panel centralizado"> <span class="Legenda">Digite as palavras: </span><br> <input type="text" id="input" autocomplete="off" placeholder="digite aqui..."> <br><span class="Aviso">Dificuldade: [1] <input type="range" id="dificuldade" value="3" min="1" max="10"> [10] </span> <br> <br> <button id="startBtn">▶️ Começar</button> <button id="pauseBtn">⏸️ Pausar</button><br> <button id="continueBtn">➡️ Continuar</button> <button id="resetBtn">🔄 Reiniciar</button> <br> <br> <h2 id="score">Pontuação: <span id="score-value">0</span></h2> <h4 id="timer">Tempo: <span id="timer-value">0</span> segundos</h4> <table><tr> <td id="cell0">1</td> <td id="cell1">2</td> <td id="cell2">3</td> <td id="cell3">4</td> <td id="cell4">5</td> <td id="cell5">6</td> <td id="cell6">7</td> <td id="cell7">8</td> <td id="cell8">9</td> <td id="cell9">10</td></tr> </table> <!-- <input type="text" id="inp-level"> <button onclick="btnLevel()">Level</button> --> <br><br> <br><br> <!-- <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/0gO5Vbklho8yrBrUdHhuLH?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> --> <!-- Badge Code - Do Not Change The Code --> <a class="hitCounter" href="https://visitorshitcounter.com/" target="_blank" title="Hit counter" data-name="ccb1914fed9e624efde8c73fdb76c673|6|external|1|#0099cc|#f5f5f5|small|s-hit">Hit Counter</a><script>document.write("<script type='text/javascript' src='https://visitorshitcounter.com/js/hitCounter.js?v="+Date.now()+"'><\/script>");</script> <!-- Badge Code End Here --> <br><br> <a href='https://www.free-counters.org/'>free Counters</a> <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=3f214a103466f20256bd7d1a93ea45d699a7cccd'></script> <script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/1172289/t/6"></script> <br><br> <!-- <img src="https://ogp.me/logo.png" width="60" height="60"> <br> <img src="https://statcounter.com/images/logo-statcounter-arc.svg" width="60" height="60"> <br><br>--> Versão 0.2.0 (20.30) </div> <div class="right-panel"> <div id="countdown"></div> <canvas id="gameCanvas"></canvas> </div> <div> <div id="correctWords" class="listagem"> </div> <div id="wrongWords" class="listagem"> </div> </div> </div> </div> <audio id="Acertar_Facil" src="Audio/Acertar_Facil.wav"></audio> <audio id="Acertar_Medio" src="Audio/Acertar_Medio.wav"></audio> <audio id="Acertar_Dificil" src="Audio/Acertar_Dificil.wav"></audio> <audio id="Ativar" src="Audio/Ativar.wav"></audio> <audio id="Palavra" src="Audio/Palavra.wav"></audio> <audio id="Falhar" src="Audio/Falhar.wav"></audio> <audio id="Perder" src="Audio/Perder.wav"></audio> <audio id="Passar_de_Fase" src="Audio/Passar_de_Fase.wav"></audio> <audio id="Fase_1" src="Audio/Fase_1.mp3" loop></audio> <script src="mestre.js"></script><!-- ######################################################### --> <!-- Default Statcounter code for Mestre do Teclado https://ricardoms2710.github.io/mestre-do-teclado --> <script type="text/javascript"> var sc_project=12988572; var sc_invisible=1; var sc_security="d83afb51"; </script> <script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script> <noscript><div class="statcounter"><a title="web stats" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/12988572/0/d83afb51/1/" alt="web stats" referrerPolicy="no-referrer-when-downgrade"></a></div></noscript> <!-- End of Statcounter Code --></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- https://wiki.whatwg.org/wiki/MetaExtensions -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="application-name" content="Mestre do Teclado">
+    <meta name="description" content="Jogo para aprender digitação de palavras em português">
+    <meta name="keywords" content="HTML, CSS, JavaScript, Jogo, digitação">
+    <meta name="author" content="Ricardo de Magalhães Simões">
+    
+    <meta property="og:title" content="Mestre do Teclado">
+    <meta property="og:description" content="Jogo para aprender digitação de palavras em português">
+    <meta property="og:image" content="https://ricardoms2710.github.io/mestre-do-teclado/Imagem/thumbnail.jpg">
+    <meta property="og:url" content="https://ricardoms2710.github.io/mestre-do-teclado/">
+    <meta property="og:type" content="website">
+
+    <script>
+        if (window.location.protocol === 'https:') 
+        {
+            document.write("<meta name='server' content='GitHub'>");
+            document.write("<base href='https://ricardoms2710.github.io/mestre-do-teclado/'>");
+        } 
+        else 
+        {
+            document.write("<meta name='server' content='localhost'>");
+        }
+    </script>
+    <!-- <base href="https://ricardoms2710.github.io/mestre-do-teclado/"> -->
+    <title>Mestre do Teclado - Jogo da DigitAção</title>
+    <link rel="icon" type="image/x-icon" href="Imagem/Teclado.png">
+    <link rel="stylesheet" href="mestre.css">
+    <script src="JS/base.js"></script>
+</head>
+<body>
+    <div class="pagina">
+        <div class="titulo">
+            <span class="url">https://ricardoms2710.github.io/mestre-do-teclado</span><br>
+			<br>
+			<img src="Imagem/mestre.png" width="640"><br>
+            <h2> Jogo da <span class="azul">Digit</span><span class="vermelho">Ação</span>! </h2>
+			<h4>Versão: 0.2 - 22/04/2024</h4>
+            <h3>Ricardo de Magalhães Simões</h3>
+            <h3>rmagalhaess@hotmail.com</h3>
+            <hr>
+        </div>
+        <div class="container">
+            <div class="left-panel centralizado">
+                <span class="Legenda">Escolha o nível do jogo: </span><br>
+                <select onchange="Dificuldade(this)">
+                    <option value="1">😅 Fácil</option>
+                    <option value="2">😐 Médio</option>
+                    <option value="3">🥴 Difícil</option>
+                    <option value="4">🤬 Palavrões</option>
+                </select>
+
+                <br><br><hr><br><br>
+                
+                <span class="Legenda">Digite as palavras: </span><br>
+                <input type="text" id="digitacao" autocomplete="off" placeholder="digite aqui..."> <br>
+				<!-- <span class="Aviso">Dificuldade: [1] <input type="range" id="dificuldade" value="3" min="1" max="10"> [10] </span> <br> -->
+                <br>
+                <button id="startBtn">▶️ Começar</button>
+                <button id="pauseBtn">⏸️ Pausar</button><br>
+                <button id="continueBtn">➡️ Continuar</button>
+                <button id="resetBtn">🔄 Reiniciar</button>
+                <br>
+                <br>
+                <h2 id="score">Pontuação: <span id="score-value">0</span></h2>
+                <h4 id="timer">Tempo: <span id="timer-value">0</span> segundos</h4>
+				  <table>
+					<tr>
+					  <td id="cell0">1</td>
+					  <td id="cell1">2</td>
+					  <td id="cell2">3</td>
+					  <td id="cell3">4</td>
+					  <td id="cell4">5</td>
+					  <td id="cell5">6</td>
+					  <td id="cell6">7</td>
+					  <td id="cell7">8</td>
+					  <td id="cell8">9</td>
+					  <td id="cell9">10</td>
+					</tr>
+				  </table>
+				  <!--
+				  <input type="text" id="inp-level">
+				  <button onclick="btnLevel()">Level</button>
+				  -->
+                <br><br>
+                <br><br>                
+                <!-- ######## <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/0gO5Vbklho8yrBrUdHhuLH?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> -->
+                <!-- ######## Badge Code - Do Not Change The Code -->
+                <!-- -------- <a class="hitCounter" href="https://visitorshitcounter.com/" target="_blank" title="Hit counter" data-name="ccb1914fed9e624efde8c73fdb76c673|6|external|1|#0099cc|#f5f5f5|small|s-hit">Hit Counter</a><script>document.write("<script type='text/javascript' src='https://visitorshitcounter.com/js/hitCounter.js?v="+Date.now()+"'><\/script>");</script> -->
+                <!-- ######## Badge Code End Here -->
+                <br><br>
+                <a href='https://www.free-counters.org/'>free Counters</a> <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=3f214a103466f20256bd7d1a93ea45d699a7cccd'></script>
+                <script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/1172289/t/6"></script>
+                <br><br>
+                <!-- 
+				<img src="https://ogp.me/logo.png" width="60" height="60">
+                <br>
+                <img src="https://statcounter.com/images/logo-statcounter-arc.svg" width="60" height="60">
+                <br><br>
+				-->
+                Versão 0.3.0 (20.15)
+            </div>
+            <div class="right-panel">
+                <div id="countdown"></div>
+                <canvas id="gameCanvas"></canvas>
+            </div>
+            <div>
+                <div id="correctWords" class="listagem"> </div>
+                <div id="wrongWords" class="listagem"> </div>
+            </div>
+        </div>
+
+    </div>
+    
+    <audio id="Acertar_Facil" src="Audio/Acertar_Facil.wav"></audio>
+    <audio id="Acertar_Medio" src="Audio/Acertar_Medio.wav"></audio>
+    <audio id="Acertar_Dificil" src="Audio/Acertar_Dificil.wav"></audio>
+    <audio id="Ativar" src="Audio/Ativar.wav"></audio>
+    <audio id="Palavra" src="Audio/Palavra.wav"></audio>
+    <audio id="Falhar" src="Audio/Falhar.wav"></audio>
+    <audio id="Perder" src="Audio/Perder.wav"></audio>
+    <audio id="Passar_de_Fase" src="Audio/Passar_de_Fase.wav"></audio>
+    <audio id="Fase_1" src="Audio/Fase_1.mp3" loop></audio>
+
+    <script src="JS/palavras.js"></script>
+    <script src="JS/digitacao.js"></script>
+    <script src="JS/audio.js"></script>
+    <script src="JS/nivel.js"></script>
+    <script src="JS/botoes.js"></script>
+    <script src="JS/timer.js"></script>
+    <script src="JS/mestre.js"></script>
+
+<!-- ######################################################### -->
+
+    <!-- Default Statcounter code for Mestre do Teclado
+    https://ricardoms2710.github.io/mestre-do-teclado -->
+    <script type="text/javascript">
+        var sc_project=12988572; 
+        var sc_invisible=1; 
+        var sc_security="d83afb51"; 
+        </script>
+        <script type="text/javascript"
+        src="https://www.statcounter.com/counter/counter.js"
+        async></script>
+        <noscript><div class="statcounter"><a title="web stats"
+        href="https://statcounter.com/" target="_blank"><img
+        class="statcounter"
+        src="https://c.statcounter.com/12988572/0/d83afb51/1/"
+        alt="web stats"
+        referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+        <!-- End of Statcounter Code -->
+</body>
+</html>

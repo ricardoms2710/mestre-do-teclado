@@ -1,1 +1,141 @@
-.container,.right-panel,body{display:flex}#score,input[type=text]{margin-top:.8rem}#countdown,*{background-color:rgba(0,0,0,0)}.listagem,canvas{border:2px solid #000}@font-face{font-family:Titulo-Italico;src:url('Fonte/Titulo_Italico.ttf') format('truetype')}@font-face{font-family:Legenda-Italico;src:url('Fonte/Legenda_Italico.ttf') format('truetype')}@font-face{font-family:Legenda-Normal;src:url('Fonte/Legenda_Normal.ttf') format('truetype')}*{margin:0;padding:0;font-size:12px;font-family:Arial;color:#000;box-sizing:border-box}body{height:100vh;justify-content:center;align-items:center;background-image:url('Imagem/Cenário.jpg');background-size:cover;background-position:center}h1,h2,h4{text-align:left}h1{font-size:5rem;font-family:Titulo-Italico}h2{font-size:3.5rem;font-family:Legenda-Italico}h3{font-size:2rem;text-align:right}h4{font-size:1.5rem;font-family:Legenda-Normal}span{font-size:inherit;font-family:inherit}#score,.Legenda,.url,td{font-size:2rem}td{font-family:HeMan-Preto;background-color:#000;color:#fff;padding:.4rem;text-align:center;width:2.5rem}input[type=text]{font-size:2rem;padding:.4rem;background-color:rgba(255,255,255,.75)}.azul{color:#00f}.vermelho{color:red}.centralizado{align-items:center;justify-content:center}.url{font-family:Verdana,Arial;font-weight:900}.Aviso,button{font-size:1.5rem}.container{justify-content:space-between;align-items:flex-start;margin:.5rem}.left-panel{width:26rem}canvas{display:block;margin:0 auto;height:640px;width:480px}button{width:11rem;height:3rem}#startBtn{background-color:#8f8}#pauseBtn{background-color:#ff8}#continueBtn{background-color:#8ff}#resetBtn{background-color:#f88}#countdown{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:20rem;font-weight:700;color:#fff;text-shadow:2px 2px 4px rgba(0,0,0,.5);display:none}.listagem{top:0;right:0;width:160px;height:320px;overflow-y:auto;padding:.8rem}#correctWords{background-color:rgba(16,192,64,.25)}#wrongWords{background-color:rgba(192,16,64,.25)}
+@font-face 
+{
+    font-family: 'Titulo-Italico'; 
+    src: url('Fonte/Titulo_Italico.ttf') format('truetype');
+}
+
+@font-face 
+{
+    font-family: 'Legenda-Italico'; 
+    src: url('Fonte/Legenda_Italico.ttf') format('truetype');
+}
+
+@font-face 
+{
+    font-family: 'Legenda-Normal'; 
+    src: url('Fonte/Legenda_Normal.ttf') format('truetype');
+}
+
+* 
+{ 
+    margin: 0; padding: 0; 
+    font-size: 12px; font-family: Arial; color: black; background-color: white;
+    box-sizing: border-box; 
+    background-color: rgba(0, 0, 0, 0.0);
+}
+
+body      
+{ 
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-image: url('Imagem/Cenário.jpg'); /* Specify the path to your image */
+    background-size: cover; /* Cover the entire viewport */
+    background-position: center; /* Center the background image */
+}
+
+div {  }
+
+select, option { font-size: 2rem; background-color: white; }
+
+h1,h2, h4 { text-align: left; }
+h1 { font-size: 5rem; font-family: "Titulo-Italico"; }
+h2 { font-size: 3.5rem; font-family: "Legenda-Italico"; }
+h3 { font-size: 2rem; text-align: right; }
+h4 { font-size: 1.5rem; font-family: "Legenda-Normal"; }
+span { font-size: inherit; font-family: inherit; }
+td {
+  font-family: 'HeMan-Preto'; 
+  font-size: 2rem;
+  background-color: black;
+  color: white;
+  padding: 0.4rem;
+  text-align: center;
+  width: 2.5rem;
+}
+
+input[type="text"] 
+{ 
+    font-size: 2rem; padding: 0.4rem; margin-top: 0.8rem; 
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+.azul     { color: blue; }
+.vermelho { color: red; }
+
+.centralizado { text-align: center; align-items: center; justify-content: center; }
+
+.pagina {  }
+.titulo {  }
+.url    { font-family: Verdana, Arial; font-size: 2rem; font-weight: 900; }
+.Legenda { font-size: 2rem; }
+.Aviso { font-size: 1.5rem; }
+
+.container 
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 0.5rem;
+}
+
+.left-panel {
+    width: 26rem; 
+}
+
+.right-panel {
+    display: flex;
+}
+
+canvas {
+    border: 2px solid black;
+    display: block;
+    margin: 0 auto;
+    height: 640px;
+    width: 480px;
+}
+
+button { width: 11rem; height: 3rem; font-size: 1.5rem; }
+
+#startBtn    { background-color: rgb(136, 255, 136); }
+#pauseBtn    { background-color: rgb(255, 255, 136); }
+#continueBtn { background-color: rgb(136, 255, 255); }
+#resetBtn    { background-color: rgb(255, 136, 136); }
+
+#score {
+    font-size: 2rem;
+    margin-top: 0.8rem;
+}
+
+#countdown {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20rem;
+    font-weight: bold;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.0);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
+.listagem
+{
+    top: 0; right: 0;
+    width: 160px; /* Adjust as needed */
+    height: 320px; /* Fill the height of the canvas */
+    border: 2px solid black;
+    overflow-y: auto; /* Enable scrolling if needed */
+    padding: 0.8rem;
+}
+
+#correctWords {
+    background-color: rgba(16, 192, 64, 0.25); /* Semi-transparent background */
+}
+
+#wrongWords {
+    background-color: rgba(192, 16, 64, 0.25); /* Semi-transparent background */
+}
