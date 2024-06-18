@@ -2,11 +2,13 @@ document.getElementById('digitacao').addEventListener('input', function (e){ Dig
 
 function Digitacao( evento )
 {
-    if (evento.target.value === currentWord) 
+    _LOG_INI( "mestre.js", arguments.callee.name, arguments );
+    
+    if (evento.target.value === Mestre.Palavra_Atual) 
     {
-        document.getElementById("correctWords").innerHTML += currentWord+"<br>";
-		var pontos = calculateScore(currentWord);
-		if (pontos < 20 ) 
+        document.getElementById("correctWords").innerHTML += Mestre.Palavra_Atual+"<br>";
+		var pontuacao = calculateScore(Mestre.Palavra_Atual);
+		if (pontuacao < 20 ) 
 		{ 
 			Tocar('Acertar_Facil');
 		}
@@ -15,10 +17,10 @@ function Digitacao( evento )
 			Tocar('Acertar_Dificil');
 		}
 		
-        score += pontos;
+        Mestre.pontos += pontuacao;
         updateScore();
         evento.target.value = '';
-        currentWord = undefined;
+        Mestre.Palavra_Atual = undefined;
         atualizando_palavra = false;
     }
 }

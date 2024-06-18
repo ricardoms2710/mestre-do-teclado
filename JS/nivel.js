@@ -7,6 +7,8 @@ var blinkInterval = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
 // ----------------------------------------------------------------------
 function btnLevel()
 {
+	_LOG_INI( "mestre.js", arguments.callee.name, arguments );
+
 	var level = parseInt(document.getElementById("inp-level").value);
 	inactiveLevels();
 	activeLevel(level);
@@ -15,6 +17,8 @@ function btnLevel()
 // ----------------------------------------------------------------------
 function setBlink( level )
 {
+	_LOG_INI( "mestre.js", arguments.callee.name, arguments );
+
 	//console.log("setBlink", level);
 	var cellId = "cell" + i;
 	var cell = document.getElementById(cellId);
@@ -24,7 +28,8 @@ function setBlink( level )
 // ----------------------------------------------------------------------
 function setLevel( level )
 {
-	//console.log("setLevel", level);
+	_LOG_INI( "mestre.js", arguments.callee.name, arguments );
+
 	clearInterval(blinkInterval[level]);
 	var cellId = "cell" + i;
 	var cell = document.getElementById(cellId);
@@ -32,12 +37,14 @@ function setLevel( level )
 		cell.style.color = 'black';
 		cell.style.backgroundColor = colors[level];
 		
-	velocidade = level;
+	Mestre.velocidade = level;
 }
 
 // ----------------------------------------------------------------------
 function activeLevel(level) 
 {
+	_LOG_INI( "mestre.js", arguments.callee.name, arguments );
+
 	//console.log("activeLevel", blinkInterval);
 	for(i=0;i<=level;i++)
 	{
@@ -51,6 +58,8 @@ function activeLevel(level)
 // ----------------------------------------------------------------------
 function inactiveLevels()
 {
+	_LOG_INI( "mestre.js", arguments.callee.name, arguments );
+
 	for(i=0;i<10;i++)
 	{
 		var cellId = "cell" + i;
@@ -64,10 +73,12 @@ function inactiveLevels()
 }
 
 // ----------------------------------------------------------------------
-function calculateLevel( score, timer )
+function calculateLevel( p_Pontuacao, timer )
 {
-	var ratio = score / timer;
-	//console.log('Score/Timer Ratio:', ratio);
+	_LOG_INI( "mestre.js", arguments.callee.name, arguments );
+
+	var ratio = p_Pontuacao / timer;
+	//console.log('p_Pontuacao/timer Ratio:', ratio);
 	
 	//ratio = Math.round(ratio);
 	
@@ -92,14 +103,16 @@ function calculateLevel( score, timer )
 // ----------------------------------------------------------------------
 function updateLevel() 
 {
+	_LOG_INI( "mestre.js", arguments.callee.name, arguments );
+
 	//console.log('updating...');
 	
-	var score = parseInt(document.getElementById('score-value').innerText);
+	var pontuacao = parseInt(document.getElementById('int_Pontuacao').innerText);
 	var timer = parseInt(document.getElementById('timer-value').innerText);
 
 	if (timer !== 0) 
 	{
-		calculateLevel( score, timer );
+		calculateLevel( pontuacao, timer );
 	} 
 	//else 
 	//{
@@ -110,6 +123,8 @@ function updateLevel()
 // ----------------------------------------------------------------------
 function intervalLevel()
 {
+	_LOG_INI( "mestre.js", arguments.callee.name, arguments );
+	
 	setInterval( updateLevel, 10000); // Update every 10 seconds
 }
 

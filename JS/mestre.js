@@ -20,6 +20,8 @@ ctx.font = fontSize + "px Arial";
 // ----------------------------------------------------------------------
 function Gradiente()
 {
+    _LOG_INI( "mestre.js", arguments.callee.name, arguments );
+
     // Create a linear gradient from top to bottom
     var gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
         gradient.addColorStop(0.00, '#FF7777');    
@@ -35,28 +37,38 @@ function Gradiente()
 //Gradiente();
 
 // ******************************************************************************
-var velocidade = 1;
-let currentWord;
-let score = 0;
-let wordXPosition = 0;
-let wordYPosition = 0; // Initial position for word
-let gameInterval;
+var Mestre = {
+    velocidade: 1,
+    Palavra_Atual: "",
+    Palavra_Pos_X: 0,
+    Palavra_Pos_Y: 0,
+    pontos: 0,
+    Atualiz_Tela: null
+}
+Mestre.velocidade = 1;
+Mestre.Palavra_Atual;
+Mestre.pontos = 0;
+Mestre.Palavra_Pos_X = 0;
+Mestre.Palavra_Pos_Y = 0; // Initial position for word
+Mestre.Atualiz_Tela = null;
 
 function draw() 
 {
+    _LOG_INI( "mestre.js", arguments.callee.name, arguments );
+
     var pos_X = 0;
     var pos_Y = 0;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     Gradiente();
 
-    if(currentWord != undefined )
+    if(Mestre.Palavra_Atual != undefined )
     {
-        pos_X = wordXPosition; //canvas.width / 2 - ctx.measureText(currentWord).width / 2;
-        pos_Y = wordYPosition;
+        pos_X = Mestre.Palavra_Pos_X; //canvas.width / 2 - ctx.measureText(Palavra_Atual).width / 2;
+        pos_Y = Mestre.Palavra_Pos_Y;
         
         ctx.fillStyle = 'black';
-        ctx.fillText(currentWord, pos_X, pos_Y);
+        ctx.fillText(Mestre.Palavra_Atual, pos_X, pos_Y);
     }
 
 }
@@ -72,13 +84,15 @@ draw();
 //     }, 3000); // Wait for 3 seconds before returning a word
 // }
 // ----------------------------------------------------------------------
-let t_FACIL = [];
-let t_MEDIO = [];
-let t_DIFICIL = [];
-let t_PALAVROES = [];
-let escolha_complex = 0;
+var t_FACIL = [];
+var t_MEDIO = [];
+var t_DIFICIL = [];
+var t_PALAVROES = [];
+var escolha_complex = 0;
 function getRandomWord(callback) 
 {
+    _LOG_INI( "mestre.js", arguments.callee.name, arguments );
+
     if (( 1 <= complexidade && complexidade <= 4 ) != true)
     {
         complexidade = 1;
@@ -87,7 +101,7 @@ function getRandomWord(callback)
     if ( escolha_complex != complexidade )
     {
         escolha_complex = complexidade;
-        let PALAVRAS = [];
+        PALAVRAS = [];
         switch(complexidade)
         {
             case 1: PALAVRAS = FACIL; break;
@@ -103,49 +117,51 @@ function getRandomWord(callback)
 
 // ******************************************************************************
 //var fator_queda = 3;
-var taxa_queda = velocidade*25/60; // taxa_queda = pixels / segundos
+var taxa_queda = Mestre.velocidade*25/60; // taxa_queda = pixels / segundos
 var limite_altura = canvas.height + (fontSize/2);
 var atualizando_palavra = false;
 var wordX_MaxPos = 0;
 var tempo_nova_palavra = 250;
 function update() 
 {
+    _LOG_INI( "mestre.js", arguments.callee.name, arguments );
+    //_LOG( "mestre.js", arguments.callee.name, "Mestre", Mestre.Palavra_Atual, typeof(Mestre.Palavra_Atual) );
+
 	//velocidade = parseInt(document.getElementById('velocidade').value);
-	taxa_queda = (velocidade*25)/60; // taxa_queda = pixels / segundos
+	taxa_queda = (Mestre.velocidade*25)/60; // taxa_queda = pixels / segundos
 	
     draw();
-    if (currentWord === undefined) 
+    if ( (Mestre.Palavra_Atual === undefined) || (Mestre.Palavra_Atual === null) || (Mestre.Palavra_Atual === "") )
     {
 		document.getElementById("digitacao").value = "";
         if ( atualizando_palavra == false )
         {
             atualizando_palavra = true;
-            wordYPosition = 0; // Reset word position when a new word appears
-            // currentWord = getRandomWord();
+            Mestre.Palavra_Pos_Y = 0;
             setTimeout(function() 
 			{
-                getRandomWord(function(word) 
+                getRandomWord(function(p_Nova_Palavra) 
                 {
 					Tocar("Palavra");
-                    currentWord = word;
-                    wordX_MaxPos = canvas.width / 2 - ctx.measureText(currentWord).width / 2; 
-                    wordXPosition = Math.floor(Math.random() * (wordX_MaxPos - 20)) + 20;
+                    Mestre.Palavra_Atual = p_Nova_Palavra;
+                    wordX_MaxPos = canvas.width / 2 - ctx.measureText(Mestre.Palavra_Atual).width / 2; 
+                    Mestre.Palavra_Pos_X = Math.floor(Math.random() * (wordX_MaxPos - 20)) + 20;
                 });
             }, tempo_nova_palavra);
         }
     } 
     else 
     {
-        wordYPosition += taxa_queda; // Move the word downward at a rate of 150 pixels per second (assuming 60 frames per second)
-        if (wordYPosition > limite_altura ) 
+        Mestre.Palavra_Pos_Y += taxa_queda; // Move the word downward at a rate of 150 pixels per second (assuming 60 frames per second)
+        if (Mestre.Palavra_Pos_Y > limite_altura ) 
         {
-            document.getElementById("wrongWords").innerHTML += currentWord+"<br>";
+            document.getElementById("wrongWords").innerHTML += Mestre.Palavra_Atual+"<br>";
 
-            if ( score > 0 ) { score -= (calculateScore(currentWord)/2); }
-            if ( score < 0 ) { score = 0; }
+            if ( Mestre.pontos > 0 ) { Mestre.pontos -= (calculateScore(Mestre.Palavra_Atual)/2); }
+            if ( Mestre.pontos < 0 ) { Mestre.pontos = 0; }
             updateScore();
             
-            currentWord = undefined; // Reset current word if it goes below the canvas
+            Mestre.Palavra_Atual = undefined; // Reset current word if it goes below the canvas
             atualizando_palavra = false;
             
             Tocar('Falhar');
@@ -156,6 +172,8 @@ function update()
 // ******************************************************************************
 function calculateScore(word) 
 {
+    _LOG_INI( "mestre.js", arguments.callee.name, arguments );
+
 	// Equação com crescimento exponencial:
 	// y=2^((x−10)/2);
 	// y(1) = 2^((1−10)/2)  ≈ 0.04419...
@@ -179,10 +197,12 @@ function calculateScore(word)
 // ******************************************************************************
 function updateScore() 
 {
-    document.getElementById('score-value').innerText = score;
+    _LOG_INI( "mestre.js", arguments.callee.name, arguments );
+
+    document.getElementById('int_Pontuacao').innerText = Mestre.pontos;
 	updateLevel();
     
-	//if ( score > 25 )
+	//if ( pontos > 25 )
     //{
     //    Passar_de_Fase.play();
     //}
@@ -192,6 +212,8 @@ function updateScore()
 var complexidade = 0;
 function Dificuldade( html_select )
 {
+    _LOG_INI( "mestre.js", arguments.callee.name, arguments );
+
     try
     {
         complexidade = parseInt(html_select.selectedOptions[0].value);

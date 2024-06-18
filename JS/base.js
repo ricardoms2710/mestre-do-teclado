@@ -8,6 +8,12 @@ function _ByID( id_HTML="" )
 }
 
 // ----------------------------------------------------------------------
+function _LOG_INI( Arquivo, Funcao, ...parametros )
+{
+    //console.log(Arquivo, Funcao, parametros );
+}
+
+// ----------------------------------------------------------------------
 function _LOG( Arquivo, Funcao, ...parametros )
 {
     console.log(Arquivo, Funcao, parametros );

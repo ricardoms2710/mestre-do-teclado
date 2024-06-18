@@ -1,13 +1,18 @@
 
 function Iniciar()
 {
-    //if ( gameInterval == null ) 
+	_LOG_INI( "botoes.js", arguments.callee.name, arguments );
+
+    //if ( Atualiz_Tela == null ) 
     {
 		//console.log("dificuldade", dificuldade);
 		
         document.getElementById('digitacao').focus();
 		
-		gameInterval = setInterval(function() { update(); }, 1000 / 60); // 60 frames per second
+		let Quadros_por_Segundo = 60;
+		let Taxa_Atualizacao = 1/Quadros_por_Segundo;
+		let Taxa_Atualiz_Milissegundo = Taxa_Atualizacao*1000;
+		Mestre.Atualiz_Tela = setInterval(function() { update(); }, Taxa_Atualiz_Milissegundo); 
         
 		startTimer();
 		
@@ -23,8 +28,11 @@ function Iniciar()
 // ----------------------------------------------------------------------
 document.getElementById('startBtn').addEventListener('click', function() 
 {
-	//console.log("gameInterval", gameInterval, typeof(gameInterval) );
-	if ( ( gameInterval == null ) || ( gameInterval == undefined ) )
+	_LOG_INI( "botoes.js", arguments.callee.name, arguments );
+
+	//_LOG("Mestre.Atualiz_Tela", Mestre.Atualiz_Tela, typeof(Mestre.Atualiz_Tela) );
+
+	if ( ( Mestre.Atualiz_Tela == null ) || ( Mestre.Atualiz_Tela == undefined ) )
 	{
 		var countdownElement = document.getElementById('countdown');
 		countdownElement.style.display = 'block';
@@ -41,6 +49,8 @@ document.getElementById('startBtn').addEventListener('click', function()
 // ----------------------------------------------------------------------
 function startCountdown(element, count, callback) 
 {
+	_LOG_INI( "botoes.js", arguments.callee.name, arguments );
+
 	Tocar('Ativar');
     update();
 
@@ -56,21 +66,24 @@ function startCountdown(element, count, callback)
 }
 
 // ******************************************************************************
+/*
 document.getElementById('pauseBtn').addEventListener('click', function() 
 {
-    clearInterval(gameInterval);
-    gameInterval = null;
+    clearInterval(Mestre.Atualiz_Tela);
+    Mestre.Atualiz_Tela = null;
 	
 	Pausar('Fase_1');
 	
 	blinkTimer();
 });
-
+*/
 // ----------------------------------------------------------------------
 var blinkInterval;
 
 function stopBlinkingTimer() 
 {
+	_LOG_INI( "botoes.js", arguments.callee.name, arguments );
+
 	var timerSpan = document.getElementById('timer-value');
 		timerSpan.style.color = "black";
 		
@@ -80,6 +93,8 @@ function stopBlinkingTimer()
 // ----------------------------------------------------------------------
 function blinkTimer() 
 {
+  _LOG_INI( "botoes.js", arguments.callee.name, arguments );
+
   var timerSpan = document.getElementById('timer-value');
   var colors = ['red', 'blue'];
   var index = 0;
@@ -94,25 +109,28 @@ function blinkTimer()
 
 
 // ******************************************************************************
+/*
 document.getElementById('continueBtn').addEventListener('click', function() 
 {
-    if (!gameInterval) 
+    if (!Mestre.Atualiz_Tela) 
 	{
-        gameInterval = setInterval(function() 
-						{
-							update();
-						}, 1000 / 60); 
+        Mestre.Atualiz_Tela = setInterval(function() 
+							{
+								update();
+							}, 1000 / 60); 
 						
 		Tocar("Fase_1");
 						
 		stopBlinkingTimer();
     }
 });
-
+*/
 // ******************************************************************************
 var resetButton = document.getElementById('resetBtn');
 resetButton.addEventListener('click', function() 
 {
+	_LOG_INI( "botoes.js", arguments.callee.name, arguments );
+	
 	location.reload(true);
 /*
     stopTimer();
@@ -120,23 +138,16 @@ resetButton.addEventListener('click', function()
     document.getElementById("correctWords").innerHTML = "";
     document.getElementById("wrongWords").innerHTML = "";
 
-    gameInterval = null;
-    currentWord = undefined;
+    Mestre.Atualiz_Tela = null;
+    Palavra_Atual = undefined;
     atualizando_palavra = false;
     document.getElementById('countdown').textContent = 3;
     
     // Clear the canvas
     draw();
     
-    // Stop all sounds
-    // Assuming you have an array of audio elements named "sounds"
-    // sounds.forEach(function(audio) {
-    //     audio.pause();
-    //     audio.currentTime = 0;
-    // });
-    
     // Set score to 0
-    document.getElementById('score-value').textContent = '0';
+    document.getElementById('int_Pontuacao').textContent = '0';
 	
 */
 });

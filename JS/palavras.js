@@ -17,6 +17,8 @@ var dezoito = ["São José do Rio Preto"];
 var dezenove = ["Jaboatão dos Guararapes"];
 var vinte = ["Nossa Senhora do Socorro"]; 
 
+var PALAVRAS = [];
+
 var FACIL = [];
     FACIL = tres.concat(quatro.concat(cinco));
 

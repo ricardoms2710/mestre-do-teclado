@@ -1,7 +1,7 @@
 // ----------------------------------------------------------------------
 function Carregar( nome_Audio="", volume=1 )
 {
-    //_LOG( "audio.js", "Carregar()", "INI", arguments );
+    //_LOG_INI( "audio.js", "Carregar()", "INI", arguments );
     
     var audio = _ByID(nome_Audio);
     var abriu = false;
@@ -25,7 +25,7 @@ var Fase_1 = Carregar('Fase_1', 0.35);
 // ----------------------------------------------------------------------
 function Tocar( audio="", tempo=0 )
 {
-    //_LOG( "audio.js", "Tocar()", "INI", arguments );
+    //_LOG_INI( "audio.js", "Tocar()", "INI", arguments );
 
     if ( audio != "Fase_1" ) { Parar( audio ); }
 
@@ -40,14 +40,14 @@ function Tocar( audio="", tempo=0 )
         case 'Perder': Perder.play(); break;
         case 'Passar_de_Fase': Passar_de_Fase.play(); break;
         case 'Fase_1': Fase_1.play(); break;
-        default: _LOG( "audio.js", "Tocar()", "ERRO", "arquivo de música não existe..." );
+        default: _LOG_INI( "audio.js", "Tocar()", "ERRO", "arquivo de música não existe..." );
     }
 }
 
 // ----------------------------------------------------------------------
 function Parar( audio="" )
 {
-    _LOG( "audio.js", "Parar()", "INI", arguments );
+    _LOG_INI( "audio.js", "Parar()", "INI", arguments );
 
     var elemHTML = null;
     var musica = "";
@@ -63,7 +63,7 @@ function Parar( audio="" )
         case 'Perder': elemHTML = Perder; break;
         case 'Passar_de_Fase': elemHTML = Passar_de_Fase; break;
         case 'Fase_1': elemHTML = Fase_1; break;
-        default: _LOG( "audio.js", "Parar()", "ERRO", "arquivo de música não existe..." );
+        default: _LOG_INI( "audio.js", "Parar()", "ERRO", "arquivo de música não existe..." );
     }
 
     if ( elemHTML != null )
@@ -81,11 +81,11 @@ function Parar( audio="" )
 // ----------------------------------------------------------------------
 function Pausar( audio="" )
 {
-    _LOG( "audio.js", "Pausar()", "INI", arguments );
+    _LOG_INI( "audio.js", "Pausar()", "INI", arguments );
 
     switch(audio)
     {
         case 'Fase_1': Fase_1.pause(); break;
-        default: _LOG( "audio.js", "Pausar()", "ERRO", "arquivo de música não existe..." );
+        default: _LOG_INI( "audio.js", "Pausar()", "ERRO", "arquivo de música não existe..." );
     }
 }

@@ -62,12 +62,12 @@
 				<!-- <span class="Aviso">Dificuldade: [1] <input type="range" id="dificuldade" value="3" min="1" max="10"> [10] </span> <br> -->
                 <br>
                 <button id="startBtn">▶️ Começar</button>
-                <button id="pauseBtn">⏸️ Pausar</button><br>
-                <button id="continueBtn">➡️ Continuar</button>
+                <!-- <button id="pauseBtn">⏸️ Pausar</button><br> -->
+                <!-- <button id="continueBtn">➡️ Continuar</button> -->
                 <button id="resetBtn">🔄 Reiniciar</button>
                 <br>
                 <br>
-                <h2 id="score">Pontuação: <span id="score-value">0</span></h2>
+                <h2 id="txt_Pontuacao">Pontuação: <span id="int_Pontuacao">0</span></h2>
                 <h4 id="timer">Tempo: <span id="timer-value">0</span> segundos</h4>
 				  <table>
 					<tr>
@@ -109,9 +109,21 @@
                 <div id="countdown"></div>
                 <canvas id="gameCanvas"></canvas>
             </div>
-            <div>
+            <div id="Acertos_Erros">
                 <div id="correctWords" class="listagem"> </div>
                 <div id="wrongWords" class="listagem"> </div>
+            </div>
+            <div id="Recordes">
+                Recordes:<br>
+                <hr>
+                😅 Fácil<br>
+                <ul> <li>Um</li> <li>Dois</li> <li>Três</li> </ul><hr>
+                😐 Médio<br>
+                <ul> <li>Um</li> <li>Dois</li> <li>Três</li> </ul><hr>
+                🥴 Difícil<br>
+                <ul> <li>Um</li> <li>Dois</li> <li>Três</li> </ul><hr>
+                🤬 Palavrões<br>
+                <ul> <li>Um</li> <li>Dois</li> <li>Três</li> </ul><hr>
             </div>
         </div>
 
