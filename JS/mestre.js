@@ -155,7 +155,7 @@ function update()
         Mestre.Palavra_Pos_Y += taxa_queda; // Move the word downward at a rate of 150 pixels per second (assuming 60 frames per second)
         if (Mestre.Palavra_Pos_Y > limite_altura ) 
         {
-            document.getElementById("wrongWords").innerHTML += Mestre.Palavra_Atual+"<br>";
+            document.getElementById("Erros").innerHTML += Mestre.Palavra_Atual+"<br>";
 
             if ( Mestre.pontos > 0 ) { Mestre.pontos -= (calculateScore(Mestre.Palavra_Atual)/2); }
             if ( Mestre.pontos < 0 ) { Mestre.pontos = 0; }

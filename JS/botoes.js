@@ -135,8 +135,8 @@ resetButton.addEventListener('click', function()
 /*
     stopTimer();
 
-    document.getElementById("correctWords").innerHTML = "";
-    document.getElementById("wrongWords").innerHTML = "";
+    document.getElementById("Acertos").innerHTML = "";
+    document.getElementById("Erros").innerHTML = "";
 
     Mestre.Atualiz_Tela = null;
     Palavra_Atual = undefined;

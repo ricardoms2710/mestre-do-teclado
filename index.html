@@ -36,13 +36,10 @@
 <body>
     <div class="pagina">
         <div class="titulo">
-            <span class="url">https://ricardoms2710.github.io/mestre-do-teclado</span><br>
-			<br>
-			<img src="Imagem/mestre.png" width="640"><br>
-            <h2> Jogo da <span class="azul">Digit</span><span class="vermelho">Ação</span>! </h2>
-			<h4>Versão: 0.2 - 22/04/2024</h4>
-            <h3>Ricardo de Magalhães Simões</h3>
-            <h3>rmagalhaess@hotmail.com</h3>
+            <img src="Imagem/mestre.png" width="640"><br>
+            <h2>Jogo da <span class="azul">Digit</span><span class="vermelho">Ação</span>! </h2>
+            <h4>Prof. Ricardo de Magalhães Simões</h4>
+			<h4>Versão: 0.3 - 18/06/2024</h4>
             <hr>
         </div>
         <div class="container">
@@ -71,16 +68,16 @@
                 <h4 id="timer">Tempo: <span id="timer-value">0</span> segundos</h4>
 				  <table>
 					<tr>
-					  <td id="cell0">1</td>
-					  <td id="cell1">2</td>
-					  <td id="cell2">3</td>
-					  <td id="cell3">4</td>
-					  <td id="cell4">5</td>
-					  <td id="cell5">6</td>
-					  <td id="cell6">7</td>
-					  <td id="cell7">8</td>
-					  <td id="cell8">9</td>
-					  <td id="cell9">10</td>
+					  <td class="Nivel" id="cell0">1</td>
+					  <td class="Nivel" id="cell1">2</td>
+					  <td class="Nivel" id="cell2">3</td>
+					  <td class="Nivel" id="cell3">4</td>
+					  <td class="Nivel" id="cell4">5</td>
+					  <td class="Nivel" id="cell5">6</td>
+					  <td class="Nivel" id="cell6">7</td>
+					  <td class="Nivel" id="cell7">8</td>
+					  <td class="Nivel" id="cell8">9</td>
+					  <td class="Nivel" id="cell9">10</td>
 					</tr>
 				  </table>
 				  <!--
@@ -110,20 +107,32 @@
                 <canvas id="gameCanvas"></canvas>
             </div>
             <div id="Acertos_Erros">
-                <div id="correctWords" class="listagem"> </div>
-                <div id="wrongWords" class="listagem"> </div>
+                <div id="Acertos" class="listagem"> </div>
+                <div id="Erros" class="listagem"> </div>
             </div>
             <div id="Recordes">
-                Recordes:<br>
+                <h2>Recordes:</h2><br>
                 <hr>
-                😅 Fácil<br>
-                <ul> <li>Um</li> <li>Dois</li> <li>Três</li> </ul><hr>
-                😐 Médio<br>
-                <ul> <li>Um</li> <li>Dois</li> <li>Três</li> </ul><hr>
-                🥴 Difícil<br>
-                <ul> <li>Um</li> <li>Dois</li> <li>Três</li> </ul><hr>
-                🤬 Palavrões<br>
-                <ul> <li>Um</li> <li>Dois</li> <li>Três</li> </ul><hr>
+                <td>😅 Fácil</td><br>
+                <table> <tr> <td id="Nome1_Facil">Um</td> <td id="Pont1_Facil">0</td></tr> 
+                    <tr> <td id="Nome2_Facil">Dois</td> <td id="Pont2_Facil">0</td></tr> 
+                    <tr> <td id="Nome3_Facil">Três</td> <td id="Pont3_Facil">0</td></tr> 
+                </table><hr>
+                <td>😐 Médio</td><br>
+                <table> <tr> <td id="Nome1_Medio">Um</td> <td id="Pont1_Medio">0</td></tr> 
+                    <tr> <td id="Nome2_Medio">Dois</td> <td id="Pont2_Medio">0</td></tr> 
+                    <tr> <td id="Nome3_Medio">Três</td> <td id="Pont3_Medio">0</td></tr> 
+                </table><hr>
+                <td>🥴 Difícil</td><br>
+                <table> <tr> <td id="Nome1_Dificil">Um</td> <td id="Pont1_Dificil">0</td></tr> 
+                    <tr> <td id="Nome2_Dificil">Dois</td> <td id="Pont2_Dificil">0</td></tr> 
+                    <tr> <td id="Nome3_Dificil">Três</td> <td id="Pont3_Dificil">0</td></tr> 
+                </table><hr>
+                <td>🤬 Palavrões</td><br>
+                <table> <tr> <td id="Nome1_Palavroes">Um</td> <td id="Pont1_Palavroes">0</td></tr> 
+                    <tr> <td id="Nome2_Palavroes">Dois</td> <td id="Pont2_Palavroes">0</td></tr> 
+                    <tr> <td id="Nome3_Palavroes">Três</td> <td id="Pont3_Palavroes">0</td></tr> 
+                </table><hr>
             </div>
         </div>
 
