@@ -1,3 +1,16 @@
+/**********************************************************************
+ * @file Arquivo com as funções dedicadas ao ajuste de nível durante o jogo
+ * @author Ricardo de Magalhães Simões
+ * @version 0.4
+ * 
+ * @requires
+ * @link https://jsdoc.app
+ * @link https://mermaid.live (https://mermaid.js.org/syntax/flowchart.html)
+ */
+
+//===========
+"use strict";
+//===========
 
 var colors = [ '#777AFF','#77AAFF','#77CCAA','#77FFAA','#77FF7A',
 			   '#5AFF50','#9AFF50','#FFFF50','#FF9A50','#FF5A50' ];
@@ -7,7 +20,7 @@ var blinkInterval = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
 // ----------------------------------------------------------------------
 function btnLevel()
 {
-	_LOG_INI( "mestre.js", arguments.callee.name, arguments );
+	//_LOG_INI( "mestre.js", arguments.callee.name, arguments );
 
 	var level = parseInt(document.getElementById("inp-level").value);
 	inactiveLevels();
@@ -17,7 +30,7 @@ function btnLevel()
 // ----------------------------------------------------------------------
 function setBlink( level )
 {
-	_LOG_INI( "mestre.js", arguments.callee.name, arguments );
+	//_LOG_INI( "mestre.js", arguments.callee.name, arguments );
 
 	//console.log("setBlink", level);
 	var cellId = "cell" + i;
@@ -28,7 +41,7 @@ function setBlink( level )
 // ----------------------------------------------------------------------
 function setLevel( level )
 {
-	_LOG_INI( "mestre.js", arguments.callee.name, arguments );
+	//_LOG_INI( "mestre.js", arguments.callee.name, arguments );
 
 	clearInterval(blinkInterval[level]);
 	var cellId = "cell" + i;
@@ -43,7 +56,7 @@ function setLevel( level )
 // ----------------------------------------------------------------------
 function activeLevel(level) 
 {
-	_LOG_INI( "mestre.js", arguments.callee.name, arguments );
+	//_LOG_INI( "mestre.js", arguments.callee.name, arguments );
 
 	//console.log("activeLevel", blinkInterval);
 	for(i=0;i<=level;i++)
@@ -58,7 +71,7 @@ function activeLevel(level)
 // ----------------------------------------------------------------------
 function inactiveLevels()
 {
-	_LOG_INI( "mestre.js", arguments.callee.name, arguments );
+	//_LOG_INI( "mestre.js", arguments.callee.name, arguments );
 
 	for(i=0;i<10;i++)
 	{
@@ -75,7 +88,7 @@ function inactiveLevels()
 // ----------------------------------------------------------------------
 function calculateLevel( p_Pontuacao, timer )
 {
-	_LOG_INI( "mestre.js", arguments.callee.name, arguments );
+	//_LOG_INI( "mestre.js", arguments.callee.name, arguments );
 
 	var ratio = p_Pontuacao / timer;
 	//console.log('p_Pontuacao/timer Ratio:', ratio);
@@ -103,7 +116,7 @@ function calculateLevel( p_Pontuacao, timer )
 // ----------------------------------------------------------------------
 function updateLevel() 
 {
-	_LOG_INI( "mestre.js", arguments.callee.name, arguments );
+	//_LOG_INI( "mestre.js", arguments.callee.name, arguments );
 
 	//console.log('updating...');
 	
@@ -123,28 +136,7 @@ function updateLevel()
 // ----------------------------------------------------------------------
 function intervalLevel()
 {
-	_LOG_INI( "mestre.js", arguments.callee.name, arguments );
+	//_LOG_INI( "mestre.js", arguments.callee.name, arguments );
 	
 	setInterval( updateLevel, 10000); // Update every 10 seconds
 }
-
-
-// ******************************************************************************
-/*
-var Niveis = ["#000000", 
-			  "#00FF00", "#44FF00", "#88FF00", "#BBFF00", "#FFFF00",
-			  "#FFFF00", "#FFBB00", "#FF8800", "#FF4400", "#FF0000"];
-
-function Nivelar()
-{
-	const valor = parseInt(Nivelando.value);
-	Nivelando.style.background = Niveis[valor];
-	//console.log("Nivelar", valor, Niveis[valor]);
-	
-	dificuldade = valor;
-}
-
-var Nivelando = document.getElementById("dificuldade");
-	Nivelando.addEventListener("input", Nivelar);
-	//Nivelando.addEventListener("change", Nivelar);
-*/

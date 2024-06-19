@@ -1,7 +1,21 @@
+/**********************************************************************
+ * @file Arquivo com as funções dedicadas ao tratamento do Começo e
+ *       Reinício do jogo
+ * @author Ricardo de Magalhães Simões
+ * @version 0.4
+ * 
+ * @requires
+ * @link https://jsdoc.app
+ * @link https://mermaid.live (https://mermaid.js.org/syntax/flowchart.html)
+ */
+
+//===========
+"use strict";
+//===========
 
 function Iniciar()
 {
-	_LOG_INI( "botoes.js", arguments.callee.name, arguments );
+	//_LOG_INI( "botoes.js", arguments.callee.name, arguments );
 
     //if ( Atualiz_Tela == null ) 
     {
@@ -28,7 +42,7 @@ function Iniciar()
 // ----------------------------------------------------------------------
 document.getElementById('startBtn').addEventListener('click', function() 
 {
-	_LOG_INI( "botoes.js", arguments.callee.name, arguments );
+	//_LOG_INI( "botoes.js", arguments.callee.name, arguments );
 
 	//_LOG("Mestre.Atualiz_Tela", Mestre.Atualiz_Tela, typeof(Mestre.Atualiz_Tela) );
 
@@ -49,7 +63,7 @@ document.getElementById('startBtn').addEventListener('click', function()
 // ----------------------------------------------------------------------
 function startCountdown(element, count, callback) 
 {
-	_LOG_INI( "botoes.js", arguments.callee.name, arguments );
+	//_LOG_INI( "botoes.js", arguments.callee.name, arguments );
 
 	Tocar('Ativar');
     update();
@@ -82,7 +96,7 @@ var blinkInterval;
 
 function stopBlinkingTimer() 
 {
-	_LOG_INI( "botoes.js", arguments.callee.name, arguments );
+	//_LOG_INI( "botoes.js", arguments.callee.name, arguments );
 
 	var timerSpan = document.getElementById('timer-value');
 		timerSpan.style.color = "black";
@@ -93,7 +107,7 @@ function stopBlinkingTimer()
 // ----------------------------------------------------------------------
 function blinkTimer() 
 {
-  _LOG_INI( "botoes.js", arguments.callee.name, arguments );
+  //_LOG_INI( "botoes.js", arguments.callee.name, arguments );
 
   var timerSpan = document.getElementById('timer-value');
   var colors = ['red', 'blue'];
@@ -129,7 +143,7 @@ document.getElementById('continueBtn').addEventListener('click', function()
 var resetButton = document.getElementById('resetBtn');
 resetButton.addEventListener('click', function() 
 {
-	_LOG_INI( "botoes.js", arguments.callee.name, arguments );
+	//_LOG_INI( "botoes.js", arguments.callee.name, arguments );
 	
 	location.reload(true);
 /*

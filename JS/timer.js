@@ -1,22 +1,40 @@
-var timerValue = 0;
-var timerInterval;
+/**********************************************************************
+ * @file Arquivo com as funções dedicadas a atualização da tela durante o jogo
+ * @author Ricardo de Magalhães Simões
+ * @version 0.4
+ * 
+ * @requires
+ * @link https://jsdoc.app
+ * @link https://mermaid.live (https://mermaid.js.org/syntax/flowchart.html)
+ */
+
+//===========
+"use strict";
+//===========
+
+var Timer = {
+    Value: 0,
+    Interval: null
+}
+//var timerValue = 0;
+//var timerInterval;
 
 // Function to update the timer
 function updateTimer() 
 {
-    timerValue++;
-    document.getElementById('timer-value').textContent = timerValue;
+    Timer.Value++;
+    document.getElementById('timer-value').textContent = Timer.Value;
 }
 
 // Function to start the timer
 function startTimer() 
 {
-    timerValue = 0;	
-    timerInterval = setInterval(updateTimer, 1000); // Update timer every second (1000 milliseconds)
+    Timer.Value = 0;	
+    Timer.Interval = setInterval(updateTimer, 1000); // Update timer every second (1000 milliseconds)
 }
 
 // Function to stop the timer
 function stopTimer() 
 {
-    clearInterval(timerInterval);
+    clearInterval(Timer.Interval);
 }

@@ -1,3 +1,18 @@
+/**********************************************************************
+ * @file Arquivo com as funções dedicadas ao tratamento da tela de jogo,
+ *       a rolagem das palavras, durante o jogo
+ * @author Ricardo de Magalhães Simões
+ * @version 0.4
+ * 
+ * @requires
+ * @link https://jsdoc.app
+ * @link https://mermaid.live (https://mermaid.js.org/syntax/flowchart.html)
+ */
+
+//===========
+"use strict";
+//===========
+
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
@@ -20,7 +35,7 @@ ctx.font = fontSize + "px Arial";
 // ----------------------------------------------------------------------
 function Gradiente()
 {
-    _LOG_INI( "mestre.js", arguments.callee.name, arguments );
+    //_LOG_INI( "mestre.js", arguments.callee.name, arguments );
 
     // Create a linear gradient from top to bottom
     var gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
@@ -54,7 +69,7 @@ Mestre.Atualiz_Tela = null;
 
 function draw() 
 {
-    _LOG_INI( "mestre.js", arguments.callee.name, arguments );
+    //_LOG_INI( "mestre.js", "draw()", [] );
 
     var pos_X = 0;
     var pos_Y = 0;
@@ -91,7 +106,7 @@ var t_PALAVROES = [];
 var escolha_complex = 0;
 function getRandomWord(callback) 
 {
-    _LOG_INI( "mestre.js", arguments.callee.name, arguments );
+    //_LOG_INI( "mestre.js", "getRandomWord()", callback );
 
     if (( 1 <= complexidade && complexidade <= 4 ) != true)
     {
@@ -124,7 +139,7 @@ var wordX_MaxPos = 0;
 var tempo_nova_palavra = 250;
 function update() 
 {
-    _LOG_INI( "mestre.js", arguments.callee.name, arguments );
+    //_LOG_INI( "mestre.js", "update() ", [] );
     //_LOG( "mestre.js", arguments.callee.name, "Mestre", Mestre.Palavra_Atual, typeof(Mestre.Palavra_Atual) );
 
 	//velocidade = parseInt(document.getElementById('velocidade').value);
@@ -172,7 +187,7 @@ function update()
 // ******************************************************************************
 function calculateScore(word) 
 {
-    _LOG_INI( "mestre.js", arguments.callee.name, arguments );
+    //_LOG_INI( "mestre.js", "calculateScore()", word );
 
 	// Equação com crescimento exponencial:
 	// y=2^((x−10)/2);
@@ -197,7 +212,7 @@ function calculateScore(word)
 // ******************************************************************************
 function updateScore() 
 {
-    _LOG_INI( "mestre.js", arguments.callee.name, arguments );
+    //_LOG_INI( "mestre.js", "updateScore() ", [] );
 
     document.getElementById('int_Pontuacao').innerText = Mestre.pontos;
 	updateLevel();
@@ -212,7 +227,7 @@ function updateScore()
 var complexidade = 0;
 function Dificuldade( html_select )
 {
-    _LOG_INI( "mestre.js", arguments.callee.name, arguments );
+    //_LOG_INI( "mestre.js", "Dificuldade()",  html_select  );
 
     try
     {

@@ -1,3 +1,17 @@
+/**********************************************************************
+ * @file Arquivo com os vetores das palavras utilizadas durante o jogo
+ * @author Ricardo de Magalhães Simões
+ * @version 0.4
+ * 
+ * @requires
+ * @link https://jsdoc.app
+ * @link https://mermaid.live (https://mermaid.js.org/syntax/flowchart.html)
+ */
+
+//===========
+"use strict";
+//===========
+
 var tres = ["sol", "lua", "rio", "mar", "rua", "paz", "som", "dna", "sal", "pão", "mel"];
 var quatro = ["casa", "gato", "água", "jogo", "amor", "frio", "vila", "medo", "arte", "soma", "área", "raiz", "bang", "miau", "boxe", "judô", "surf", "remo", "luta", "rede", "site", "byte", "óleo", "lula", "atum", "bolo", "sobá", "udon", "bobó", "bala", "sofá", "mesa", "copo", "cama", "fios", "lona", "Mauá", "Magé", "Bagé"];
 var cinco = ["amigo", "livro", "filme", "praia", "sonho", "calor", "chuva", "praça", "festa", "união", "força", "massa", "ondas", "lente", "carga", "genes", "órgão", "verbo", "tchau", "ronco", "tique", "vôlei", "tênis", "skate", "rúgbi", "mouse", "modem", "email", "senha", "pasta", "arroz", "leite", "creme", "bacon", "carne", "peixe", "polvo", "torta", "pizza", "crepe", "sushi", "ramen", "natto", "curau", "fogão", "prato", "pente", "papel", "lápis", "rádio", "chave", "cabos", "joias", "tinta", "easel", "gesso", "telas", "Belém", "Natal", "Serra", "Cotia"];
