@@ -1,10 +1,13 @@
-/**********************************************************************
+/*******************************************************************************
+ * @author Ricardo de Magalhães Simões (https://www.instagram.com/ricardoms2710)
+ * @license  CC BY-NC-SA 4.0 (https://creativecommons.org/licenses/by-nc-sa/4.0)
+ * @link https://ricardoms2710.github.io/mestre-do-teclado
+ * 
  * @file Arquivo com as funções dedicadas ao tratamento da digitação 
  *       das palavras durante o jogo
- * @author Ricardo de Magalhães Simões
- * @version 0.4
+ * @version 0.5 (20/06/2024)
  * 
- * @requires
+ * @tutorial
  * @link https://jsdoc.app
  * @link https://mermaid.live (https://mermaid.js.org/syntax/flowchart.html)
  */
@@ -13,10 +16,19 @@
 "use strict";
 //===========
 
-document.getElementById('digitacao').addEventListener('input', function (e){ Digitacao(e); });
-function Digitacao( evento )
+/**********************************************************************
+ * @function Digitacao
+ * @version 0.5 (20/06/2024)
+ * @description
+ * @link https://developer.mozilla.org/en-US/docs/Web/API/Element/input_event
+ * @param {*} [evento=null]
+ * @returns 
+ *! @throws 
+ * @summary 
+ */
+function Digitacao( evento=null )
 {
-    //_LOG_INI( "mestre.js", arguments.callee.name, arguments );
+    //_LOG_INI( "digitacao.js", "Digitacao( e=null )", evento );
     
     if (evento.target.value === Mestre.Palavra_Atual) 
     {

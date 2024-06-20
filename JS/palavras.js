@@ -1,9 +1,12 @@
-/**********************************************************************
+/*******************************************************************************
+ * @author Ricardo de Magalhães Simões (https://www.instagram.com/ricardoms2710)
+ * @license  CC BY-NC-SA 4.0 (https://creativecommons.org/licenses/by-nc-sa/4.0)
+ * @link https://ricardoms2710.github.io/mestre-do-teclado
+ * 
  * @file Arquivo com os vetores das palavras utilizadas durante o jogo
- * @author Ricardo de Magalhães Simões
  * @version 0.4
  * 
- * @requires
+ * @tutorial
  * @link https://jsdoc.app
  * @link https://mermaid.live (https://mermaid.js.org/syntax/flowchart.html)
  */
@@ -45,72 +48,30 @@ var DIFICIL = [];
 var PALAVROES = [];
     PALAVROES = dez.concat(onze.concat(doze.concat(treze.concat(catorze.concat(quinze.concat(dezesseis.concat(dezessete.concat(dezoito))))))));
 
-function removerPrimeiraOcorrencia(palavra, PALAVRAS) 
+
+/**********************************************************************
+ * @function removerPrimeiraOcorrencia
+ * @version 0.4 (18/06/2024)
+ * @description
+ *
+ * @param {string} [palavra=""]
+ * @param {*} [PALAVRAS=[]]
+ * @returns {*} 
+ *! @throws 
+ * @summary
+ */
+function removerPrimeiraOcorrencia(palavra="", PALAVRAS=[]) 
 {
   // Encontra o índice da primeira ocorrência da palavra no vetor
-  var index = PALAVRAS.indexOf(palavra);
+  var indice = PALAVRAS.indexOf(palavra);
   
-  // Verifica se a palavra foi encontrada
-  if (index !== -1) 
+  // Verifica se alguma ocorrência da palavra foi encontrada
+  if (indice !== -1) 
   {
     // Remove a palavra do vetor na posição do índice encontrado
-    PALAVRAS.splice(index, 1);
+    PALAVRAS.splice(indice, 1);
   }
   
   // Retorna o vetor modificado
   return PALAVRAS;
 }
-
-/*
-const words = [
-    "casa", "cachorro", "gato", "água", "sol", "lua", "estrela", "família", "amigo", "trabalho",
-    "escola", "computador", "celular", "livro", "música", "filme", "jogo", "praia", "viagem", "futebol",
-    "amor", "felicidade", "sorriso", "esperança", "sonho", "comida", "bebida", "frio", "calor", "chuva",
-    "arco-íris", "montanha", "rio", "mar", "floresta", "deserto", "cidade", "vila", "caminho", "estrada",
-    "avenida", "prédio", "apartamento", "jardim", "parque", "praça", "bairro", "vizinho", "rua", "esquina",
-    "hospital", "igreja", "templo", "mesquita", "sinagoga", "festa", "aniversário", "casamento", "batizado",
-    "celebração", "alegria", "tristeza", "saudade", "esperança", "medo", "coragem", "resiliência", "paz",
-    "guerra", "violência", "solidariedade", "união", "justiça", "liberdade", "democracia", "natureza", "arte",
-    "cultura", "história", "geografia", "ciência", "matemática", "física", "química", "biologia", "educação",
-    "ensino", "aprendizagem", "conhecimento", "tecnologia", "inovação", "progresso", "sustentabilidade"
-  ];
-  
-const Matematica = ["número", "soma", "subtração", "multiplicação", "divisão", "adição", "equação", "problema", "geometria", "área", "perímetro", "volume", "raiz", "potência", "ângulo", "gráfico", "circunferência", "função", "proporção", "matriz", "derivada", "integral", "exponencial", "logaritmo", "probabilidade"];
-const Fisica = ["energia", "força", "movimento", "velocidade", "aceleração", "trabalho", "potência", "momento", "inércia", "gravidade", "massa", "densidade", "pressão", "temperatura", "calor", "som", "ondas", "frequência", "amplitude", "refração", "espelho", "lente", "eletricidade", "carga", "corrente"];
-const Biologia = ["célula", "dna", "genes", "mitocôndria", "organela", "membrana", "citoplasma", "núcleo", "ribossomo", "cromossomo", "clorofila", "fotossíntese", "respiração", "fermentação", "metabolismo", "sistema", "tecido", "órgão", "órgão", "sangue", "tecido", "músculo", "neurônio", "cromossomo", "genética"];
-const Portugues = ["gramática", "sintaxe", "semântica", "ortografia", "acentuação", "conjugação", "substantivo", "adjetivo", "verbo", "advérbio", "preposição", "conjunção", "interjeição", "sinônimo", "antônimo", "polissemia", "ambiguidade", "figura", "linguagem", "metáfora", "metonímia", "hipérbole", "ironia", "eufemismo", "onomatopeia"];
-const onomatopeias = ["tic-tac", "tilintar", "splash", "bang", "pipocar", "zum-zum", "clique", "tchau", "ronco", "estalo", "plim-plim", "miau", "có-có-ri-có", "toc-toc", "tique" ];
-const esportes = ["futebol", "vôlei", "natação", "basquete", "handebol", "atletismo", "ginástica", "ciclismo", "boxe", "judô", "tênis", "surf", "remo", "hipismo", "taekwondo", "karatê", "skate", "patinação", "escalada", "hóquei", "rúgbi", "luta", "triathlon", "ginástica", "beisebol"];
-const informatica = ["computador", "teclado", "mouse", "monitor", "impressora", "scanner", "roteador", "modem", 
-"hacker", "firewall", "antivírus", "software", "hardware", "rede", "internet", "site", "email", "senha", "backup", 
-"arquivo", "pasta", "byte", "processador", "memória"];
-
-const produtosAlimenticios = ["arroz", "feijão", "macarrão", "farinha", "açúcar", "sal", "óleo", "azeite", "manteiga", "leite", 
-"queijo", "iogurte", "creme", "coalhada", "requeijão", "presunto", "mortadela", "linguiça", "salsicha", "bacon", "frango", 
-"carne", "peixe", "camarão", "lagosta", "caranguejo", "polvo", "lula", "atum", "sardinha", "salame", "azeitona", "pão", 
-"biscoito", "bolacha", "torrada", "pão-de-queijo", "bolo", "torta", "pastel", "coxinha", "pão-francês", "pão-de-forma", 
-"pão-integral", "croissant", "baguete", "sanduíche", "hambúrguer", "pizza", "tapioca", "crepe", "panqueca", "lasanha", 
-"espaguete", "canelloni", "risoto", "sushi", "sashimi", "tempura", "sobá", "udon", "ramen", "natto", "shabu-shabu", "yakissoba", 
-"moqueca", "bobó", "feijoada", "acarajé", "vatapá", "caruru", "tapioca", "pamonha", "curau", "cuscuz", "munguzá", "canjica", 
-"arroz-doce", "manjar", "brigadeiro", "cajuzinho", "pé-de-moleque", "doce-de-leite", "bala", "chiclete", "pirulito", 
-"chocolate", "sorvete", "picolé", "gelatina", "mousse", "compota", "geleia", "mel", "rapadura", "cuscuz", 
-"tapioca"];
-
-const coisasEmCasa = ["sofá", "cadeira", "mesa", "geladeira", "fogão", "micro-ondas", "liquidificador", "torradeira", "panela", 
-"prato", "copo", "talher", "escova", "pente", "shampoo", "condicionador", "sabonete", "toalha", "espelho", "secador", 
-"perfume", "lâmpada", "abajur", "cama", "travesseiro", "cobertor", "lençol", "armário", "guarda-roupa", "cabide", 
-"escrivaninha", "computador", "notebook", "teclado", "mouse", "impressora", "papel", "caneta", "lápis", "borracha", 
-"caderno", "livro", "revista", "televisão", "controle", "som", "aparelho", "sofá-cama", "mesa-de-centro", 
-"estante", "prateleira", "abajur", "tapete", "cortina", "janela", "persiana", "ventilador", "ar-condicionado", 
-"aquecedor", "relógio", "rádio", "telefone", "celular", "tablet", "câmera", "chave", "fechadura", "maçaneta", 
-"trinco", "tomada", "interruptor", "cabos", "fios", "carregador", "bateria", "controle-remoto", "cartão", "dinheiro", 
-"documento", "agenda", "óculos", "relógio", "joias", "pincel", "tinta", "lona", "easel", "paleta", "tintas", 
-"espátula", "aquarela", "óleo", "gesso", "papel", "cavalete", "telas", "pincéis"];
-
-
-const cidadesBrasil = ["São Paulo", "Rio de Janeiro", "Brasília", "Salvador", "Fortaleza", "Belo Horizonte", "Manaus", "Curitiba", "Recife", "Goiânia", "Belém", "Porto Alegre", "São Luís", "Maceió", "Campo Grande", "Natal", "Teresina", "João Pessoa", "Cuiabá", "Aracaju", "Florianópolis", "Macapá", "Vitória", "Rio Branco", "Palmas", "Boa Vista", "Porto Velho", "São José", "Santo André", "Osasco", "São Bernardo", "Duque de Caxias", "Serra", "Sorocaba", "Ribeirão Preto", "Cariacica", "Londrina", "Vila Velha", "Jaboatão dos Guararapes", "Feira de Santana", "Anápolis", "Niterói", "Campina Grande", "Montes Claros", "Mogi das Cruzes", "São José do Rio Preto", "Piracicaba", "Barueri", "Suzano", "Mauá", "Santa Maria", "Ponta Grossa", "Canoas", "Ilhéus", "Pelotas", "Santarém", "Marabá", "Caxias do Sul", "Petrolina", "Uberaba", "Volta Redonda", "Caucaia", "Governador Valadares", "Novo Hamburgo", "Limeira", "São Carlos", "Petrópolis", "Taboão da Serra", "Magé", "Itaquaquecetuba", "Lauro de Freitas", "Paulista", "Sete Lagoas", "Guarujá", "Cotia", "Sumaré", "Marília", "Carapicuíba", "Itabuna", "Uruguaiana", "Várzea Grande", "Dourados", "Santa Luzia", "Paranaguá", "Rio Grande", "Camaçari", "Bagé", "Valinhos", "Maricá", "Cascavel", "Mossoró", "Nossa Senhora do Socorro", "Americana", "Itapevi", "Barreiras", "São Leopoldo", "Maranguape", "Francisco Morato", "Colombo"];
-
-
-//const words = ["Tokyo","Delhi","Shanghai","Sao Paulo","Mumbai","Beijing","Mexico City","Osaka","Cairo","New York City","Dhaka","Karachi","Buenos Aires","Istanbul","Kolkata","Manila","Lagos","Rio de Janeiro","Tianjin","Kinshasa","Guangzhou","Los Angeles","Moscow","Shenzhen","Lahore","Bangalore","Paris","Bogota","Jakarta","Chennai","Lima","Bangkok","Seoul","Nagoya","Hyderabad","London","Tehran","Chicago","Chengdu","Nanjing","Wuhan","Ho Chi Minh City","Luanda","Ahmedabad","Kuala Lumpur","Hangzhou","Hong Kong","Riyadh","Baghdad","Toronto","Santiago","Dallas","San Francisco","Singapore","Philadelphia","Atlanta","Boston","Miami","Phoenix","Detroit","Seattle","Minneapolis","San Diego","Tampa","Denver","Baltimore","Orlando","Saint Petersburg","Charlotte","San Antonio","Austin","Columbus","Indianapolis","Fort Worth","Nashville","Portland","Las Vegas","Milwaukee","Albuquerque","Tucson","Fresno","Sacramento","Long Beach","Kansas City","Omaha","Virginia Beach","Miami","Oakland","Tulsa","Honolulu","Minneapolis","Arlington","Wichita","Raleigh","St. Louis","Santa Ana","Anaheim","Tampa","Pittsburgh","Cincinnati"];
-//const words = ['apple', 'banana', 'cherry', 'orange', 'grape', 'watermelon', 'pineapple', 'strawberry', 'blueberry', 'kiwi'];
-*/

@@ -1,10 +1,13 @@
-/**********************************************************************
+/*******************************************************************************
+ * @author Ricardo de Magalhães Simões (https://www.instagram.com/ricardoms2710)
+ * @license  CC BY-NC-SA 4.0 (https://creativecommons.org/licenses/by-nc-sa/4.0)
+ * @link https://ricardoms2710.github.io/mestre-do-teclado
+ * 
  * @file Arquivo com as funções dedicadas ao tratamento da tela de jogo,
  *       a rolagem das palavras, durante o jogo
- * @author Ricardo de Magalhães Simões
- * @version 0.4
+ * @version 0.4 (18/06/2024)
  * 
- * @requires
+ * @tutorial
  * @link https://jsdoc.app
  * @link https://mermaid.live (https://mermaid.js.org/syntax/flowchart.html)
  */
@@ -32,7 +35,15 @@ const fontSize = 32 * pixelRatio;
 ctx.font = fontSize + "px Arial";
 
 
-// ----------------------------------------------------------------------
+/**********************************************************************
+ * @function Gradiente
+ * @version 0.4 (18/06/2024)
+ * @description
+ * @param 
+ * @returns 
+ *! @throws 
+ * @summary 
+ */
 function Gradiente()
 {
     //_LOG_INI( "mestre.js", arguments.callee.name, arguments );
@@ -67,6 +78,16 @@ Mestre.Palavra_Pos_X = 0;
 Mestre.Palavra_Pos_Y = 0; // Initial position for word
 Mestre.Atualiz_Tela = null;
 
+
+/**********************************************************************
+ * @function draw
+ * @version 0.4 (18/06/2024)
+ * @description
+ * @param 
+ * @returns 
+ *! @throws 
+ * @summary 
+ */
 function draw() 
 {
     //_LOG_INI( "mestre.js", "draw()", [] );
@@ -104,7 +125,17 @@ var t_MEDIO = [];
 var t_DIFICIL = [];
 var t_PALAVROES = [];
 var escolha_complex = 0;
-function getRandomWord(callback) 
+
+/**********************************************************************
+ * @function getRandomWord
+ * @version 0.4 (18/06/2024)
+ * @description
+ * @param {*} [callback=null]
+ * @returns 
+ *! @throws 
+ * @summary 
+ */
+function getRandomWord(callback=null) 
 {
     //_LOG_INI( "mestre.js", "getRandomWord()", callback );
 
@@ -137,9 +168,19 @@ var limite_altura = canvas.height + (fontSize/2);
 var atualizando_palavra = false;
 var wordX_MaxPos = 0;
 var tempo_nova_palavra = 250;
-function update() 
+
+/**********************************************************************
+ * @function Mestre_Atualizar_Jogo
+ * @version 0.4 (18/06/2024)
+ * @description
+ * @param 
+ * @returns 
+ *! @throws 
+ * @summary 
+ */
+function Mestre_Atualizar_Jogo() 
 {
-    //_LOG_INI( "mestre.js", "update() ", [] );
+    //_LOG_INI( "mestre.js", "Mestre_Atualizar_Jogo() ", [] );
     //_LOG( "mestre.js", arguments.callee.name, "Mestre", Mestre.Palavra_Atual, typeof(Mestre.Palavra_Atual) );
 
 	//velocidade = parseInt(document.getElementById('velocidade').value);
@@ -148,7 +189,7 @@ function update()
     draw();
     if ( (Mestre.Palavra_Atual === undefined) || (Mestre.Palavra_Atual === null) || (Mestre.Palavra_Atual === "") )
     {
-		document.getElementById("digitacao").value = "";
+		document.getElementById("txt_Digitacao").value = "";
         if ( atualizando_palavra == false )
         {
             atualizando_palavra = true;
@@ -161,6 +202,8 @@ function update()
                     Mestre.Palavra_Atual = p_Nova_Palavra;
                     wordX_MaxPos = canvas.width / 2 - ctx.measureText(Mestre.Palavra_Atual).width / 2; 
                     Mestre.Palavra_Pos_X = Math.floor(Math.random() * (wordX_MaxPos - 20)) + 20;
+
+                    _LOG( "mestre.js", "Mestre_Atualizar_Jogo()", "Mestre", Mestre.Palavra_Atual, Mestre.velocidade );
                 });
             }, tempo_nova_palavra);
         }
@@ -184,7 +227,16 @@ function update()
     }
 }
 
-// ******************************************************************************
+/**********************************************************************
+ * @function calculateScore
+ * @version 0.4 (18/06/2024)
+ * @description
+ *
+ * @param {*} word
+ * @returns {*} 
+ *! @throws 
+ * @summary 
+ */
 function calculateScore(word) 
 {
     //_LOG_INI( "mestre.js", "calculateScore()", word );
@@ -209,13 +261,21 @@ function calculateScore(word)
     return Math.floor( calc*tam );
 }
 
-// ******************************************************************************
+/**********************************************************************
+ * @function updateScore
+ * @version 0.4 (18/06/2024)
+ * @description
+ * @param 
+ * @returns 
+ *! @throws 
+ * @summary 
+ */
 function updateScore() 
 {
     //_LOG_INI( "mestre.js", "updateScore() ", [] );
 
     document.getElementById('int_Pontuacao').innerText = Mestre.pontos;
-	updateLevel();
+	Nivel_Atualizar();
     
 	//if ( pontos > 25 )
     //{
@@ -225,7 +285,17 @@ function updateScore()
 
 // ******************************************************************************
 var complexidade = 0;
-function Dificuldade( html_select )
+/**********************************************************************
+ * @function Dificuldade
+ * @version 0.4 (18/06/2024)
+ * @description
+ *
+ * @param {*} [html_select=null]
+ * @returns 
+ *! @throws 
+ * @summary 
+ */
+function Dificuldade( html_select=null )
 {
     //_LOG_INI( "mestre.js", "Dificuldade()",  html_select  );
 

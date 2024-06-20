@@ -1,9 +1,12 @@
-/**********************************************************************
- * @file Arquivo com as funções dedicadas ao ajuste de nível durante o jogo
- * @author Ricardo de Magalhães Simões
- * @version 0.4
+/*******************************************************************************
+ * @author Ricardo de Magalhães Simões (https://www.instagram.com/ricardoms2710)
+ * @license  CC BY-NC-SA 4.0 (https://creativecommons.org/licenses/by-nc-sa/4.0) 
+ * @link https://ricardoms2710.github.io/mestre-do-teclado
  * 
- * @requires
+ * @file Arquivo com as funções dedicadas ao ajuste de nível durante o jogo
+ * @version 0.5 (20/06/2024)
+ * 
+ * @tutorial
  * @link https://jsdoc.app
  * @link https://mermaid.live (https://mermaid.js.org/syntax/flowchart.html)
  */
@@ -12,131 +15,192 @@
 "use strict";
 //===========
 
-var colors = [ '#777AFF','#77AAFF','#77CCAA','#77FFAA','#77FF7A',
+var CORES = [ '#777AFF','#77AAFF','#77CCAA','#77FFAA','#77FF7A',
 			   '#5AFF50','#9AFF50','#FFFF50','#FF9A50','#FF5A50' ];
 
-var blinkInterval = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
-
-// ----------------------------------------------------------------------
-function btnLevel()
+/**********************************************************************
+ * @function bto_Nivel
+ * @version 0.5 (20/06/2024)
+ * @description
+ * @param 
+ * @returns 
+ *! @throws 
+ * @summary 
+ */
+function bto_Nivel()
 {
-	//_LOG_INI( "mestre.js", arguments.callee.name, arguments );
+	//_LOG_INI( "nivel.js", arguments.callee.name, arguments );
 
-	var level = parseInt(document.getElementById("inp-level").value);
-	inactiveLevels();
-	activeLevel(level);
+	var nivel = parseInt(document.getElementById("inp-nivel").value);
+	Nivel_Desativar_Todos();
+	Nivel_Ativar(nivel);
 }
 
-// ----------------------------------------------------------------------
-function setBlink( level )
+/**********************************************************************
+ * @function Nivel_Piscar
+ * @version 0.5 (20/06/2024)
+ * @description
+ *
+ * @param {*} nivel
+ * @returns 
+ *! @throws 
+ * @summary 
+ */
+function Nivel_Piscar( nivel )
 {
-	//_LOG_INI( "mestre.js", arguments.callee.name, arguments );
+	//_LOG_INI( "nivel.js", arguments.callee.name, arguments );
 
-	//console.log("setBlink", level);
-	var cellId = "cell" + i;
-	var cell = document.getElementById(cellId);
-		cell.style.visibility = (cell.style.visibility === 'hidden') ? 'visible' : 'hidden';
+	//console.log("Nivel_Piscar", nivel);
+	var celula = document.getElementById("cel_" + nivel);
+		celula.style.visibility = (celula.style.visibility === 'hidden') ? 'visible' : 'hidden';
 }
 
-// ----------------------------------------------------------------------
-function setLevel( level )
-{
-	//_LOG_INI( "mestre.js", arguments.callee.name, arguments );
+var Nivel_Piscando = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
 
-	clearInterval(blinkInterval[level]);
-	var cellId = "cell" + i;
-	var cell = document.getElementById(cellId);
-		cell.style.visibility = 'visible'; // Ensure the cell is visible after blinking
-		cell.style.color = 'black';
-		cell.style.backgroundColor = colors[level];
+/**********************************************************************
+ * @function Nivel_Definir
+ * @version 0.5 (20/06/2024)
+ * @description
+ *
+ * @param {number} [nivel=0]
+ * @returns 
+ *! @throws 
+ * @summary 
+ */
+function Nivel_Definir( nivel=0 )
+{
+	//_LOG_INI( "nivel.js", arguments.callee.name, arguments );
+
+	//? clearInterval(Nivel_Piscando[nivel]);
+	var celula = document.getElementById("cel_" + nivel);
+		celula.style.visibility = 'visible'; 
+		celula.style.color = 'black';
+		celula.style.backgroundColor = CORES[nivel];
 		
-	Mestre.velocidade = level;
+	Mestre.velocidade = (nivel>0?nivel:1);
 }
 
-// ----------------------------------------------------------------------
-function activeLevel(level) 
+/**********************************************************************
+ * @function Nivel_Ativar
+ * @version 0.5 (20/06/2024)
+ * @description
+ *
+ * @param {number} [nivel=0]
+ * @returns 
+ *! @throws 
+ * @summary 
+ */
+function Nivel_Ativar(nivel=0) 
 {
-	//_LOG_INI( "mestre.js", arguments.callee.name, arguments );
+	//_LOG_INI( "nivel.js", arguments.callee.name, arguments );
 
-	//console.log("activeLevel", blinkInterval);
-	for(i=0;i<=level;i++)
+	//console.log("Nivel_Ativar", Nivel_Piscando);
+	for(let i=1;i<=nivel;i++)
 	{
-		//blinkInterval[i] = setInterval(function(){setBlink(i);}, 100);
-		//setTimeout( function(){setLevel(i);}, 1000);
+		//? Nivel_Piscando[i] = setInterval(function(){Nivel_Piscar(i);}, 100);
+		//? setTimeout( function(){Nivel_Definir(i);}, 1000);
 		
-		setLevel(i);
+		Nivel_Definir(i);
 	}
 }
 
-// ----------------------------------------------------------------------
-function inactiveLevels()
+/**********************************************************************
+ * @function Nivel_Desativar_Todos
+ * @version 0.5 (20/06/2024)
+ * @description
+ *
+ * @param 
+ * @returns 
+ *! @throws 
+ * @summary 
+ */
+function Nivel_Desativar_Todos()
 {
-	//_LOG_INI( "mestre.js", arguments.callee.name, arguments );
+	_LOG_INI( "nivel.js", "Nivel_Desativar_Todos()", "INI" );
 
-	for(i=0;i<10;i++)
+	for(let i=1;i<=10;i++)
 	{
-		var cellId = "cell" + i;
-		var cell = document.getElementById(cellId);
-		cell.style.visibility = 'visible'; // Ensure the cell is visible after blinking
-		cell.style.color = 'white';
-		cell.style.backgroundColor = "black";
+		_LOG_INI( "nivel.js", "Nivel_Desativar_Todos()", "cellId: "+"cel_" + i );
+		var celula = document.getElementById("cel_" + i);
+			celula.style.visibility = 'visible'; // forçar visibilidade, pois altera ao piscar
+			celula.style.color = 'white';
+			celula.style.backgroundColor = "black";
 		
-		clearInterval(blinkInterval[i]);
+		//? clearInterval(Nivel_Piscando[i]);
 	}
 }
 
-// ----------------------------------------------------------------------
-function calculateLevel( p_Pontuacao, timer )
+/**********************************************************************
+ * @function Nivel_Calcular
+ * @version 0.5 (20/06/2024)
+ * @description
+ *
+ * @param {number} [p_Pontuacao=0]
+ * @param {number} [timer=1]
+ * @returns 
+ *! @throws 
+ * @summary 
+ */
+function Nivel_Calcular( pontuacao=0, cronometro=1 )
 {
-	//_LOG_INI( "mestre.js", arguments.callee.name, arguments );
+	//_LOG_INI( "nivel.js", arguments.callee.name, arguments );
 
-	var ratio = p_Pontuacao / timer;
-	//console.log('p_Pontuacao/timer Ratio:', ratio);
+	var fator = pontuacao / cronometro;
+
+	Nivel_Desativar_Todos();
 	
-	//ratio = Math.round(ratio);
-	
-	inactiveLevels();
-	
-	if ( ratio > 0.1 )
+	if ( fator > 0.1 )
 	{
-		     if ( ratio > (4.50) ) { activeLevel(9); }
-		else if ( ratio > (3.60) ) { activeLevel(8); }
-		else if ( ratio > (2.90) ) { activeLevel(7); }
-		else if ( ratio > (2.20) ) { activeLevel(6); }
-		else if ( ratio > (1.60) ) { activeLevel(5); }
-		else if ( ratio > (1.10) ) { activeLevel(4); }
-		else if ( ratio > (0.70) ) { activeLevel(3); }
-		else if ( ratio > (0.40) ) { activeLevel(2); }
-		else if ( ratio > (0.20) ) { activeLevel(1); }
-		else if ( ratio > (0.10) ) { activeLevel(0); }
+		     if ( fator > (4.50) ) { Nivel_Ativar(10); }
+		else if ( fator > (3.60) ) { Nivel_Ativar(9); }
+		else if ( fator > (2.90) ) { Nivel_Ativar(8); }
+		else if ( fator > (2.20) ) { Nivel_Ativar(7); }
+		else if ( fator > (1.60) ) { Nivel_Ativar(6); }
+		else if ( fator > (1.10) ) { Nivel_Ativar(5); }
+		else if ( fator > (0.70) ) { Nivel_Ativar(4); }
+		else if ( fator > (0.40) ) { Nivel_Ativar(3); }
+		else if ( fator > (0.20) ) { Nivel_Ativar(2); }
+		else if ( fator > (0.10) ) { Nivel_Ativar(1); }
 	}
 	
 }
 
-// ----------------------------------------------------------------------
-function updateLevel() 
+/**********************************************************************
+ * @function Nivel_Atualizar
+ * @version 0.5 (20/06/2024)
+ * @description
+ *
+ * @param 
+ * @returns 
+ *! @throws 
+ * @summary 
+ */
+function Nivel_Atualizar() 
 {
-	//_LOG_INI( "mestre.js", arguments.callee.name, arguments );
+	//_LOG_INI( "nivel.js", arguments.callee.name, arguments );
 
-	//console.log('updating...');
-	
 	var pontuacao = parseInt(document.getElementById('int_Pontuacao').innerText);
-	var timer = parseInt(document.getElementById('timer-value').innerText);
+	var cronometro = parseInt(document.getElementById('int_Cronometro').innerText);
 
-	if (timer !== 0) 
+	if (cronometro !== 0) 
 	{
-		calculateLevel( pontuacao, timer );
+		Nivel_Calcular( pontuacao, cronometro );
 	} 
-	//else 
-	//{
-	//	console.log('Timer value is zero.');
-	//}
 }
 
-// ----------------------------------------------------------------------
-function intervalLevel()
+/**********************************************************************
+ * @function Nivel_Cronometro
+ * @version 0.5 (20/06/2024)
+ * @description
+ *
+ * @param 
+ * @returns 
+ *! @throws 
+ * @summary 
+ */
+function Nivel_Cronometro()
 {
-	//_LOG_INI( "mestre.js", arguments.callee.name, arguments );
+	//_LOG_INI( "nivel.js", arguments.callee.name, arguments );
 	
-	setInterval( updateLevel, 10000); // Update every 10 seconds
+	setInterval( Nivel_Atualizar, 10000); // Update every 10 seconds
 }

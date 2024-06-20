@@ -1,10 +1,13 @@
-/**********************************************************************
+/*******************************************************************************
+ * @author Ricardo de Magalhães Simões (https://www.instagram.com/ricardoms2710)
+ * @license  CC BY-NC-SA 4.0 (https://creativecommons.org/licenses/by-nc-sa/4.0)
+ * @link https://ricardoms2710.github.io/mestre-do-teclado
+ * 
  * @file Arquivo com as funções dedicadas ao tratamento do áudio
  *       durante o jogo
- * @author Ricardo de Magalhães Simões
- * @version 0.4
+ * @version 0.5 (20/06/2024)
  * 
- * @requires
+ * @tutorial
  * @link https://jsdoc.app
  * @link https://mermaid.live (https://mermaid.js.org/syntax/flowchart.html)
  * @link https://www.w3schools.com/jsref/dom_obj_audio.asp
@@ -17,22 +20,22 @@
 
 /**********************************************************************
  * @function Carregar
+ * @version 0.5 (20/06/2024)
  * @description Carrega o elemento HTMl responsável por um áudio específico
  * @param {string} [nome_Audio=""] Indica o nome do Elemento HTML que será utilizado
  * @param {number} [volume=1] Indica a intensidade do volume do áudio ao ser executado
  *                            Possui valores decimais, variando de 0.00 à 1.00, ex: 0.35
- * @return {HTMLElement:Audio} Um objeto HTML Element do tipo Audio
- * @throws .
- * @summary fluxograma de execução
-            flowchart TD
+ * @returns {HTMLElement:Audio} Um objeto HTML Element do tipo Audio
+ *! @throws .
+ * @summary flowchart TD
                 func{{"Carregar(nome,volume)"}}
                 i((Início)) --> _ByID[["audio = _ByID(nome)"]]
                 _ByID --> if{"Carregou ?"}
                 if -->|Sim| then(["HTMLElement:Audio"])
-                    then -->vol>"ajusta volume"]
-                    vol -->f(((Fim)))    
-                if -->|Não| else>null]
-                    else -->f
+                    then -->vol["utiliza o valor do 'volume' passado como parâmetro no objeto 'audio'"]
+                    vol -->ret
+                if -->|Não| ret
+                ret["Retorna o objeto 'audio'"] --> f(((Fim)))
  */
 function Carregar( nome_Audio="", volume=1 )
 {
@@ -58,23 +61,22 @@ var Fase_1          = Carregar('Fase_1', 0.35);
 
 /**********************************************************************
  * @function Tocar
- * @description Executar o áudio correspondente ao que for passado como
- *              parâmetro.
+ * @version 0.5 (20/06/2024)
+ * @description Executar o áudio correspondente ao que for passado como parâmetro.
  *              Para evitar sobreposição, o áudio será sempre interrompido
  *              e depois executado.
  * @param {string} [audio=""] Nome do componente HTML que possui o áudio
  * @param {number} [tempo=0] Tempo em que o áudio será executado
- * @return .
- * @throws .
- * @summary fluxograma de execução
-            flowchart TD
+ * @returns .
+ *! @throws .
+ * @summary flowchart TD
                 func{{"Tocar(audio,tempo)"}}
                 i((Início)) --> if{"Parar audio ?"}
                 if -->|Sim| then[["Parar( audio )"]]
                     then --> id
                 if -->|Não| id
 
-                id[["elemHTML = Identificar(audio)"]] --> play["elemHTML.play()"]
+                id[["elemHTML = Capturar(audio)"]] --> play["elemHTML.play()"]
 
                 play --> f(((Fim)))
  */
@@ -86,22 +88,22 @@ function Tocar( audio="", tempo=0 )
 
     if ( audio != "Fase_1" ) { Parar( audio ); }
 
-    elemHTML = Identificar(audio);
+    elemHTML = Capturar(audio);
     elemHTML.play();
 }
 
 /**********************************************************************
  * @function Parar
+ * @version 0.5 (20/06/2024)
  * @description Interrompe a execução de um áudio específico
  * @param {string} [audio=""] Nome do componente HTML que possui o áudio
- * @return .
- * @throws .
- * @summary fluxograma de execução
-            flowchart TD
+ * @returns .
+ *! @throws .
+ * @summary flowchart TD
                 func{{"Parar(audio)"}}
                 i((Início)) -->  e["elemHTML = null"] 
                 e--> mus["musica = '' ''"]
-                mus --> id[["elemHTML = Identificar(audio)"]]
+                mus --> id[["elemHTML = Capturar(audio)"]]
                 id --> if{"elemHTML != null ?"}
                 
                 if -->|Sim| then["guardar nome do áudio na variável 'musica'"]
@@ -116,12 +118,12 @@ function Tocar( audio="", tempo=0 )
  */
 function Parar( audio="" )
 {
-    _LOG_INI( "audio.js", "Parar()", "INI", arguments );
+    //_LOG_INI( "audio.js", "Parar()", "INI", arguments );
 
     var elemHTML = null;
     var musica = "";
 
-    elemHTML = Identificar(audio);
+    elemHTML = Capturar(audio);
 
     if ( elemHTML != null )
     {
@@ -136,17 +138,21 @@ function Parar( audio="" )
 }
 
 /**********************************************************************
- *
- *
- * @param {string} [audio=""]
+ * @function Pausar
+ * @version 0.5 (20/06/2024)
+ * @description Paraliza a execução do áudio da Fase em jogo
+ * @param {string} [audio=""] Nome do áudio da Fase em jogo
+ * @returns 
+ *! @throws 
+ * @summary 
  */
 function Pausar( audio="" )
 {
-    _LOG_INI( "audio.js", "Pausar()", "INI", arguments );
+    //_LOG_INI( "audio.js", "Pausar()", "INI", arguments );
 
     var elemHTML = null;
 
-    elemHTML = Identificar(audio);
+    elemHTML = Capturar(audio);
     if ( elemHTML != null )
     {
         elemHTML.pause();
@@ -154,13 +160,14 @@ function Pausar( audio="" )
 }
 
 /**********************************************************************
- *
- *
- * @param {*} audio
- * @return {*} 
- * @summary fluxograma
-            flowchart LR
-                func{{"Identificar(audio)"}}
+ * @function Capturar
+ * @version 0.5 (20/06/2024)
+ * @description Captura o Elemento HTML correspondente ao nome do áudio informado
+ * @param {string} [audio=""] Nome do áudio que será capturado
+ * @returns {HTMLElement:Audio} 
+ *! @throws 
+ * @summary flowchart LR
+                func{{"Capturar(audio)"}}
 
                 i((Início)) --> eHTML["elemHTML = null"] --> switch
 
@@ -177,7 +184,7 @@ function Pausar( audio="" )
 
                 ret --> f(((Fim)))
  */
-function Identificar(audio)
+function Capturar(audio="")
 {
     var elemHTML = null;
 

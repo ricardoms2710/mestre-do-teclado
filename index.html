@@ -39,11 +39,11 @@
             <img src="Imagem/mestre.png" width="640"><br>
             <h2>Jogo da <span class="azul">Digit</span><span class="vermelho">Ação</span>! </h2>
             <h4>Prof. Ricardo de Magalhães Simões</h4>
-			<h4>Versão: 0.3 - 18/06/2024</h4>
+			<h4>Versão: 0.4 - 18/06/2024</h4>
             <hr>
         </div>
-        <div class="container">
-            <div class="left-panel centralizado">
+        <div class="conteudo">
+            <div class="pnl_Esquerdo centralizado">
                 <span class="Legenda">Escolha o nível do jogo: </span><br>
                 <select onchange="Dificuldade(this)">
                     <option value="1">😅 Fácil</option>
@@ -55,55 +55,37 @@
                 <br><br><hr><br><br>
                 
                 <span class="Legenda">Digite as palavras: </span><br>
-                <input type="text" id="digitacao" autocomplete="off" placeholder="digite aqui..."> <br>
+                <input type="text" id="txt_Digitacao" onInput="Digitacao(event)" autocomplete="off" placeholder="digite aqui..."> <br>
 				<!-- <span class="Aviso">Dificuldade: [1] <input type="range" id="dificuldade" value="3" min="1" max="10"> [10] </span> <br> -->
                 <br>
-                <button id="startBtn">▶️ Começar</button>
-                <!-- <button id="pauseBtn">⏸️ Pausar</button><br> -->
-                <!-- <button id="continueBtn">➡️ Continuar</button> -->
-                <button id="resetBtn">🔄 Reiniciar</button>
+                <button id="bto_Comecar" onclick="Comecar()">▶️ Começar</button>
+                <!-- <button id="bto_Pausar">⏸️ Pausar</button><br> -->
+                <!-- <button id="bto_Continuar">➡️ Continuar</button> -->
+                <button id="bto_Reiniciar" onclick="Reiniciar()">🔄 Reiniciar</button>
                 <br>
                 <br>
                 <h2 id="txt_Pontuacao">Pontuação: <span id="int_Pontuacao">0</span></h2>
-                <h4 id="timer">Tempo: <span id="timer-value">0</span> segundos</h4>
+                <h4 id="txt_Cronometro">Tempo: <span id="int_Cronometro">0</span> segundos</h4>
 				  <table>
 					<tr>
-					  <td class="Nivel" id="cell0">1</td>
-					  <td class="Nivel" id="cell1">2</td>
-					  <td class="Nivel" id="cell2">3</td>
-					  <td class="Nivel" id="cell3">4</td>
-					  <td class="Nivel" id="cell4">5</td>
-					  <td class="Nivel" id="cell5">6</td>
-					  <td class="Nivel" id="cell6">7</td>
-					  <td class="Nivel" id="cell7">8</td>
-					  <td class="Nivel" id="cell8">9</td>
-					  <td class="Nivel" id="cell9">10</td>
+					  <td class="Nivel" id="cel_1">1</td>
+					  <td class="Nivel" id="cel_2">2</td>
+					  <td class="Nivel" id="cel_3">3</td>
+					  <td class="Nivel" id="cel_4">4</td>
+					  <td class="Nivel" id="cel_5">5</td>
+					  <td class="Nivel" id="cel_6">6</td>
+					  <td class="Nivel" id="cel_7">7</td>
+					  <td class="Nivel" id="cel_8">8</td>
+					  <td class="Nivel" id="cel_9">9</td>
+					  <td class="Nivel" id="cel_10">10</td>
 					</tr>
 				  </table>
-				  <!--
-				  <input type="text" id="inp-level">
-				  <button onclick="btnLevel()">Level</button>
-				  -->
-                <br><br>
-                <br><br>                
-                <!-- ######## <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/0gO5Vbklho8yrBrUdHhuLH?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> -->
-                <!-- ######## Badge Code - Do Not Change The Code -->
-                <!-- -------- <a class="hitCounter" href="https://visitorshitcounter.com/" target="_blank" title="Hit counter" data-name="ccb1914fed9e624efde8c73fdb76c673|6|external|1|#0099cc|#f5f5f5|small|s-hit">Hit Counter</a><script>document.write("<script type='text/javascript' src='https://visitorshitcounter.com/js/hitCounter.js?v="+Date.now()+"'><\/script>");</script> -->
-                <!-- ######## Badge Code End Here -->
-                <br><br>
+                <br><br><br><br><br><br>
                 <a href='https://www.free-counters.org/'>free Counters</a> <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=3f214a103466f20256bd7d1a93ea45d699a7cccd'></script>
                 <script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/1172289/t/6"></script>
-                <br><br>
-                <!-- 
-				<img src="https://ogp.me/logo.png" width="60" height="60">
-                <br>
-                <img src="https://statcounter.com/images/logo-statcounter-arc.svg" width="60" height="60">
-                <br><br>
-				-->
-                Versão 0.3.0 (20.15)
             </div>
-            <div class="right-panel">
-                <div id="countdown"></div>
+            <div class="pnl_Direito">
+                <div id="int_3_2_1"></div>
                 <canvas id="gameCanvas"></canvas>
             </div>
             <div id="Acertos_Erros">
@@ -138,22 +120,22 @@
 
     </div>
     
-    <audio id="Acertar_Facil" src="Audio/Acertar_Facil.wav"></audio>
-    <audio id="Acertar_Medio" src="Audio/Acertar_Medio.wav"></audio>
+    <audio id="Acertar_Facil"   src="Audio/Acertar_Facil.wav"></audio>
+    <audio id="Acertar_Medio"   src="Audio/Acertar_Medio.wav"></audio>
     <audio id="Acertar_Dificil" src="Audio/Acertar_Dificil.wav"></audio>
-    <audio id="Ativar" src="Audio/Ativar.wav"></audio>
-    <audio id="Palavra" src="Audio/Palavra.wav"></audio>
-    <audio id="Falhar" src="Audio/Falhar.wav"></audio>
-    <audio id="Perder" src="Audio/Perder.wav"></audio>
-    <audio id="Passar_de_Fase" src="Audio/Passar_de_Fase.wav"></audio>
-    <audio id="Fase_1" src="Audio/Fase_1.mp3" loop></audio>
+    <audio id="Ativar"          src="Audio/Ativar.wav"></audio>
+    <audio id="Palavra"         src="Audio/Palavra.wav"></audio>
+    <audio id="Falhar"          src="Audio/Falhar.wav"></audio>
+    <audio id="Perder"          src="Audio/Perder.wav"></audio>
+    <audio id="Passar_de_Fase"  src="Audio/Passar_de_Fase.wav"></audio>
+    <audio id="Fase_1"          src="Audio/Fase_1.mp3" loop></audio>
 
     <script src="JS/palavras.js"></script>
     <script src="JS/digitacao.js"></script>
     <script src="JS/audio.js"></script>
     <script src="JS/nivel.js"></script>
     <script src="JS/botoes.js"></script>
-    <script src="JS/timer.js"></script>
+    <script src="JS/cronometro.js"></script>
     <script src="JS/mestre.js"></script>
 
 <!-- ######################################################### -->

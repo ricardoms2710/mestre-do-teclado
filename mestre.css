@@ -74,7 +74,7 @@ input[type="text"]
 .Legenda { font-size: 2rem; }
 .Aviso { font-size: 1.5rem; }
 
-.container 
+.conteudo 
 {
     display: flex;
     justify-content: space-between;
@@ -82,11 +82,11 @@ input[type="text"]
     margin: 0.5rem;
 }
 
-.left-panel {
+.pnl_Esquerdo {
     width: 26rem; 
 }
 
-.right-panel {
+.pnl_Direito {
     display: flex;
 }
 
@@ -100,17 +100,17 @@ canvas {
 
 button { width: 11rem; height: 3rem; font-size: 1.5rem; }
 
-#startBtn    { background-color: rgb(136, 255, 136); }
-#pauseBtn    { background-color: rgb(255, 255, 136); }
-#continueBtn { background-color: rgb(136, 255, 255); }
-#resetBtn    { background-color: rgb(255, 136, 136); }
+#bto_Comecar   { background-color: rgb(136, 255, 136); }
+#bto_Pausar    { background-color: rgb(255, 255, 136); }
+#bto_Continuar { background-color: rgb(136, 255, 255); }
+#bto_Reiniciar { background-color: rgb(255, 136, 136); }
 
-#score {
+#txt_Pontuacao {
     font-size: 2rem;
     margin-top: 0.8rem;
 }
 
-#countdown {
+#int_3_2_1 {
     position: absolute;
     top: 50%;
     left: 45%;
