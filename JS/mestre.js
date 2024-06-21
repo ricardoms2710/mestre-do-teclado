@@ -5,7 +5,7 @@
  * 
  * @file Arquivo com as funções dedicadas ao tratamento da tela de jogo,
  *       a rolagem das palavras, durante o jogo
- * @version 0.4 (18/06/2024)
+ * @version 0.5 (21/06/2024)
  * 
  * @tutorial
  * @link https://jsdoc.app
@@ -16,28 +16,38 @@
 "use strict";
 //===========
 
-const canvas = document.getElementById('gameCanvas');
-const ctx = canvas.getContext('2d');
+// ********************************************************************
+var Mestre = {
+                pontos: 0,
+                velocidade: 1,
+                Palavra_Atual: "",
+                Palavra_Pos_X: 0,
+                Palavra_Pos_Y: 0,
+                Atualiz_Tela: null
+            }
 
-const pixelRatio = window.devicePixelRatio || 1;
-canvas.width = 480 * pixelRatio;
-canvas.height = 640 * pixelRatio;
-canvas.style.width = '480px';
-canvas.style.height = '640px';
-ctx.scale(pixelRatio, pixelRatio);
+// --------------------------------------------------------------------
+var fator_DPR = window.devicePixelRatio || 1;
 
-// Divide the canvas height into 5 equal sections
-var sectionHeight = canvas.height / 5;
+// --------------------------------------------------------------------
+var canvas_html = _ByID('canvas_html');
+    canvas_html.width = 480 * fator_DPR;
+    canvas_html.height = 640 * fator_DPR;
+    canvas_html.style.width = '480px';
+    canvas_html.style.height = '640px';
 
-// ----------------------------------------------------------------------
-// Adjust the base font size as needed
-const fontSize = 32 * pixelRatio; 
-ctx.font = fontSize + "px Arial";
+//? fazer a pontuação proporcional à altura que a palavra desceu ??
+var quinta_parte = canvas_html.height / 5;
 
+// --------------------------------------------------------------------
+var Canvas_2D = canvas_html.getContext('2d');
+    Canvas_2D.scale(fator_DPR, fator_DPR);
+var Tam_Fonte = 32 * fator_DPR; 
+    Canvas_2D.font = Tam_Fonte + "px Arial";
 
 /**********************************************************************
  * @function Gradiente
- * @version 0.4 (18/06/2024)
+ * @version 0.5 (21/06/2024)
  * @description
  * @param 
  * @returns 
@@ -48,87 +58,59 @@ function Gradiente()
 {
     //_LOG_INI( "mestre.js", arguments.callee.name, arguments );
 
-    // Create a linear gradient from top to bottom
-    var gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-        gradient.addColorStop(0.00, '#FF7777');    
-		gradient.addColorStop(0.25, '#FFAA77'); 
-		gradient.addColorStop(0.50, '#FFFF77'); 
-		gradient.addColorStop(0.75, '#77FF77'); 
-        gradient.addColorStop(1.00, '#7777FF'); 
+    var fundo = Canvas_2D.createLinearGradient(0, 0, 0, canvas_html.height);
+        fundo.addColorStop(0.00, '#FF7777');    
+		fundo.addColorStop(0.25, '#FFAA77'); 
+		fundo.addColorStop(0.50, '#FFFF77'); 
+		fundo.addColorStop(0.75, '#77FF77'); 
+        fundo.addColorStop(1.00, '#7777FF'); 
 		
-    // Fill the canvas with the gradient
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    Canvas_2D.fillStyle = fundo;
+    Canvas_2D.fillRect(0, 0, canvas_html.width, canvas_html.height);
 }
-//Gradiente();
-
-// ******************************************************************************
-var Mestre = {
-    velocidade: 1,
-    Palavra_Atual: "",
-    Palavra_Pos_X: 0,
-    Palavra_Pos_Y: 0,
-    pontos: 0,
-    Atualiz_Tela: null
-}
-Mestre.velocidade = 1;
-Mestre.Palavra_Atual;
-Mestre.pontos = 0;
-Mestre.Palavra_Pos_X = 0;
-Mestre.Palavra_Pos_Y = 0; // Initial position for word
-Mestre.Atualiz_Tela = null;
-
 
 /**********************************************************************
- * @function draw
- * @version 0.4 (18/06/2024)
+ * @function Desenhar_Palavra
+ * @version 0.5 (21/06/2024)
  * @description
  * @param 
  * @returns 
  *! @throws 
  * @summary 
  */
-function draw() 
+function Desenhar_Palavra() 
 {
-    //_LOG_INI( "mestre.js", "draw()", [] );
+    //_LOG_INI( "mestre.js", "Desenhar_Palavra()", [] );
 
     var pos_X = 0;
     var pos_Y = 0;
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    Canvas_2D.clearRect(0, 0, canvas_html.width, canvas_html.height);
     Gradiente();
 
     if(Mestre.Palavra_Atual != undefined )
     {
-        pos_X = Mestre.Palavra_Pos_X; //canvas.width / 2 - ctx.measureText(Palavra_Atual).width / 2;
+        pos_X = Mestre.Palavra_Pos_X; //canvas_html.width / 2 - Canvas_2D.measureText(Palavra_Atual).width / 2;
         pos_Y = Mestre.Palavra_Pos_Y;
         
-        ctx.fillStyle = 'black';
-        ctx.fillText(Mestre.Palavra_Atual, pos_X, pos_Y);
+        Canvas_2D.fillStyle = 'black';
+        Canvas_2D.fillText(Mestre.Palavra_Atual, pos_X, pos_Y);
     }
 
 }
-draw();
+Desenhar_Palavra();
 
-// ******************************************************************************
-// function getRandomWord_3segs(callback) {
-//     setTimeout(function() {
-//         var words = ['apple', 'banana', 'orange', 'grape', 'pineapple'];
-//         var randomIndex = Math.floor(Math.random() * words.length);
-//         var randomWord = words[randomIndex];
-//         callback(randomWord);
-//     }, 3000); // Wait for 3 seconds before returning a word
-// }
-// ----------------------------------------------------------------------
+// ********************************************************************
 var t_FACIL = [];
 var t_MEDIO = [];
 var t_DIFICIL = [];
 var t_PALAVROES = [];
+var complexidade = 0;
 var escolha_complex = 0;
 
 /**********************************************************************
  * @function getRandomWord
- * @version 0.4 (18/06/2024)
+ * @version 0.5 (21/06/2024)
  * @description
  * @param {*} [callback=null]
  * @returns 
@@ -157,21 +139,20 @@ function getRandomWord(callback=null)
         }
     }
 
-
     callback(PALAVRAS[Math.floor(Math.random() * PALAVRAS.length)]);
 }
 
 // ******************************************************************************
 //var fator_queda = 3;
-var taxa_queda = Mestre.velocidade*25/60; // taxa_queda = pixels / segundos
-var limite_altura = canvas.height + (fontSize/2);
+var taxa_queda = (Mestre.velocidade*25)/60; // taxa_queda = pixels / quadros_por_segundos
+var limite_altura = canvas_html.height + (Tam_Fonte/2);
 var atualizando_palavra = false;
-var wordX_MaxPos = 0;
+var Palavra_Max_Pos_X = 0;
 var tempo_nova_palavra = 250;
 
 /**********************************************************************
  * @function Mestre_Atualizar_Jogo
- * @version 0.4 (18/06/2024)
+ * @version 0.5 (21/06/2024)
  * @description
  * @param 
  * @returns 
@@ -183,14 +164,14 @@ function Mestre_Atualizar_Jogo()
     //_LOG_INI( "mestre.js", "Mestre_Atualizar_Jogo() ", [] );
     //_LOG( "mestre.js", arguments.callee.name, "Mestre", Mestre.Palavra_Atual, typeof(Mestre.Palavra_Atual) );
 
-	//velocidade = parseInt(document.getElementById('velocidade').value);
+	//velocidade = parseInt(_ByID('velocidade').value);
 	taxa_queda = (Mestre.velocidade*25)/60; // taxa_queda = pixels / segundos
 	
-    draw();
+    Desenhar_Palavra();
     if ( (Mestre.Palavra_Atual === undefined) || (Mestre.Palavra_Atual === null) || (Mestre.Palavra_Atual === "") )
     {
-		document.getElementById("txt_Digitacao").value = "";
-        if ( atualizando_palavra == false )
+		_ByID("txt_Digitacao").value = "";
+        if ( atualizando_palavra === false )
         {
             atualizando_palavra = true;
             Mestre.Palavra_Pos_Y = 0;
@@ -200,8 +181,8 @@ function Mestre_Atualizar_Jogo()
                 {
 					Tocar("Palavra");
                     Mestre.Palavra_Atual = p_Nova_Palavra;
-                    wordX_MaxPos = canvas.width / 2 - ctx.measureText(Mestre.Palavra_Atual).width / 2; 
-                    Mestre.Palavra_Pos_X = Math.floor(Math.random() * (wordX_MaxPos - 20)) + 20;
+                    Palavra_Max_Pos_X = canvas_html.width / 2 - Canvas_2D.measureText(Mestre.Palavra_Atual).width / 2; 
+                    Mestre.Palavra_Pos_X = Math.floor(Math.random() * (Palavra_Max_Pos_X - 20)) + 20;
 
                     _LOG( "mestre.js", "Mestre_Atualizar_Jogo()", "Mestre", Mestre.Palavra_Atual, Mestre.velocidade );
                 });
@@ -213,11 +194,11 @@ function Mestre_Atualizar_Jogo()
         Mestre.Palavra_Pos_Y += taxa_queda; // Move the word downward at a rate of 150 pixels per second (assuming 60 frames per second)
         if (Mestre.Palavra_Pos_Y > limite_altura ) 
         {
-            document.getElementById("Erros").innerHTML += Mestre.Palavra_Atual+"<br>";
+            _ByID("Erros").innerHTML += Mestre.Palavra_Atual+"<br>";
 
-            if ( Mestre.pontos > 0 ) { Mestre.pontos -= (calculateScore(Mestre.Palavra_Atual)/2); }
+            if ( Mestre.pontos > 0 ) { Mestre.pontos -= (Palavra_Pontuacao(Mestre.Palavra_Atual)/2); }
             if ( Mestre.pontos < 0 ) { Mestre.pontos = 0; }
-            updateScore();
+            Pontuacao_Atualizar();
             
             Mestre.Palavra_Atual = undefined; // Reset current word if it goes below the canvas
             atualizando_palavra = false;
@@ -228,18 +209,18 @@ function Mestre_Atualizar_Jogo()
 }
 
 /**********************************************************************
- * @function calculateScore
- * @version 0.4 (18/06/2024)
- * @description
- *
- * @param {*} word
+ * @function Palavra_Pontuacao
+ * @version 0.5 (21/06/2024)
+ * @description Calcula a pontuação de uma palavra específica, fornecendo mais pontos
+ *              para palavras com mais letras
+ * @param {string} [palavra=""]
  * @returns {*} 
  *! @throws 
  * @summary 
  */
-function calculateScore(word) 
+function Palavra_Pontuacao( palavra="" ) 
 {
-    //_LOG_INI( "mestre.js", "calculateScore()", word );
+    //_LOG_INI( "mestre.js", "Palavra_Pontuacao()", palavra );
 
 	// Equação com crescimento exponencial:
 	// y=2^((x−10)/2);
@@ -248,33 +229,33 @@ function calculateScore(word)
 	// y(8) = 2^((8−10)/2)  ≈ 0.50000
 	// y(12)= 2^((12−10)/2) ≈ 2.00000
 	
-	var tam = word.length;
+	var tam = palavra.length;
 	var fator = Math.floor(tam/10);
-	var calc = 1 + fator+Math.pow(2, (tam - (fator+1)*10) );
+	var calc = 1 + fator+Math.pow(2, (tam - (fator+1)*10) ); //? exagero matemático!
 	// 1		0		0.0019531250
 	// 4		0		0.0156250000
 	// 8		0		0.2500000000
 	//12		1		1.0039062500
 	//16		1		1.0625000000
 	
-	//console.log("calculateScore:", tam, fator, calc, calc*tam );
+	//console.log("Palavra_Pontuacao:", tam, fator, calc, calc*tam );
     return Math.floor( calc*tam );
 }
 
 /**********************************************************************
- * @function updateScore
- * @version 0.4 (18/06/2024)
+ * @function Pontuacao_Atualizar
+ * @version 0.5 (21/06/2024)
  * @description
  * @param 
  * @returns 
  *! @throws 
  * @summary 
  */
-function updateScore() 
+function Pontuacao_Atualizar() 
 {
-    //_LOG_INI( "mestre.js", "updateScore() ", [] );
+    //_LOG_INI( "mestre.js", "Pontuacao_Atualizar() ", [] );
 
-    document.getElementById('int_Pontuacao').innerText = Mestre.pontos;
+    _ByID('int_Pontuacao').innerText = Mestre.pontos;
 	Nivel_Atualizar();
     
 	//if ( pontos > 25 )
@@ -283,11 +264,9 @@ function updateScore()
     //}
 }
 
-// ******************************************************************************
-var complexidade = 0;
 /**********************************************************************
  * @function Dificuldade
- * @version 0.4 (18/06/2024)
+ * @version 0.5 (21/06/2024)
  * @description
  *
  * @param {*} [html_select=null]
@@ -311,7 +290,7 @@ function Dificuldade( html_select=null )
     }
     finally
     {
-        if ( complexidade == 0 )
+        if ( complexidade === 0 )
         {
             complexidade = 1;
         }

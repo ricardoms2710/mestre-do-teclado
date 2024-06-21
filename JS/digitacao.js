@@ -18,7 +18,7 @@
 
 /**********************************************************************
  * @function Digitacao
- * @version 0.5 (20/06/2024)
+ * @version 0.5 (21/06/2024)
  * @description
  * @link https://developer.mozilla.org/en-US/docs/Web/API/Element/input_event
  * @param {*} [evento=null]
@@ -32,8 +32,8 @@ function Digitacao( evento=null )
     
     if (evento.target.value === Mestre.Palavra_Atual) 
     {
-        document.getElementById("Acertos").innerHTML += Mestre.Palavra_Atual+"<br>";
-		var pontuacao = calculateScore(Mestre.Palavra_Atual);
+        _ByID("Acertos").innerHTML += Mestre.Palavra_Atual+"<br>";
+		var pontuacao = Palavra_Pontuacao(Mestre.Palavra_Atual);
 		if (pontuacao < 20 ) 
 		{ 
 			Tocar('Acertar_Facil');
@@ -44,7 +44,7 @@ function Digitacao( evento=null )
 		}
 		
         Mestre.pontos += pontuacao;
-        updateScore();
+        Pontuacao_Atualizar();
         evento.target.value = '';
         Mestre.Palavra_Atual = undefined;
         atualizando_palavra = false;

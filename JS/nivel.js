@@ -31,7 +31,7 @@ function bto_Nivel()
 {
 	//_LOG_INI( "nivel.js", arguments.callee.name, arguments );
 
-	var nivel = parseInt(document.getElementById("inp-nivel").value);
+	var nivel = parseInt(_ByID("inp-nivel").value);
 	Nivel_Desativar_Todos();
 	Nivel_Ativar(nivel);
 }
@@ -51,7 +51,7 @@ function Nivel_Piscar( nivel )
 	//_LOG_INI( "nivel.js", arguments.callee.name, arguments );
 
 	//console.log("Nivel_Piscar", nivel);
-	var celula = document.getElementById("cel_" + nivel);
+	var celula = _ByID("cel_" + nivel);
 		celula.style.visibility = (celula.style.visibility === 'hidden') ? 'visible' : 'hidden';
 }
 
@@ -72,7 +72,7 @@ function Nivel_Definir( nivel=0 )
 	//_LOG_INI( "nivel.js", arguments.callee.name, arguments );
 
 	//? clearInterval(Nivel_Piscando[nivel]);
-	var celula = document.getElementById("cel_" + nivel);
+	var celula = _ByID("cel_" + nivel);
 		celula.style.visibility = 'visible'; 
 		celula.style.color = 'black';
 		celula.style.backgroundColor = CORES[nivel];
@@ -121,7 +121,7 @@ function Nivel_Desativar_Todos()
 	for(let i=1;i<=10;i++)
 	{
 		_LOG_INI( "nivel.js", "Nivel_Desativar_Todos()", "cellId: "+"cel_" + i );
-		var celula = document.getElementById("cel_" + i);
+		var celula = _ByID("cel_" + i);
 			celula.style.visibility = 'visible'; // forçar visibilidade, pois altera ao piscar
 			celula.style.color = 'white';
 			celula.style.backgroundColor = "black";
@@ -179,8 +179,8 @@ function Nivel_Atualizar()
 {
 	//_LOG_INI( "nivel.js", arguments.callee.name, arguments );
 
-	var pontuacao = parseInt(document.getElementById('int_Pontuacao').innerText);
-	var cronometro = parseInt(document.getElementById('int_Cronometro').innerText);
+	var pontuacao = parseInt(_ByID('int_Pontuacao').innerText);
+	var cronometro = parseInt(_ByID('int_Cronometro').innerText);
 
 	if (cronometro !== 0) 
 	{

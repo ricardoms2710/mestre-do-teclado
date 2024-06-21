@@ -34,7 +34,7 @@ var Cronometro = {
 function Crono_Incrementa() 
 {
     Cronometro.Valor++;
-    document.getElementById('int_Cronometro').textContent = Cronometro.Valor;
+    _ByID('int_Cronometro').textContent = Cronometro.Valor;
 }
 
 /**********************************************************************
@@ -67,5 +67,5 @@ function Crono_Parar()
 {
     clearInterval(Cronometro.Intervalo);
     Cronometro.Valor = 0;
-    document.getElementById('int_Cronometro').textContent = Cronometro.Valor;
+    _ByID('int_Cronometro').textContent = Cronometro.Valor;
 }

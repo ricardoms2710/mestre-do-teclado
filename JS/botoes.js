@@ -33,7 +33,7 @@ function Iniciar()
 {
 	//_LOG_INI( "botoes.js", arguments.callee.name, arguments );
 
-	document.getElementById('txt_Digitacao').focus();
+	_ByID('txt_Digitacao').focus();
 	
 	let Quadros_por_Segundo = 60;
 	let Taxa_Atualizacao = 1/Quadros_por_Segundo;
@@ -55,16 +55,16 @@ function Iniciar()
  *! @throws 
  * @summary 
  */
-//document.getElementById('startBtn').addEventListener( 'click', function() { ... } );
+//_ByID('startBtn').addEventListener( 'click', function() { ... } );
 function Comecar()
 {
 	//_LOG_INI( "botoes.js", arguments.callee.name, arguments );
 
 	//_LOG("Mestre.Atualiz_Tela", Mestre.Atualiz_Tela, typeof(Mestre.Atualiz_Tela) );
 
-	if ( ( Mestre.Atualiz_Tela == null ) || ( Mestre.Atualiz_Tela == undefined ) )
+	if ( ( Mestre.Atualiz_Tela === null ) || ( Mestre.Atualiz_Tela === undefined ) )
 	{
-		var int_3_2_1 = document.getElementById('int_3_2_1');
+		var int_3_2_1 = _ByID('int_3_2_1');
 			int_3_2_1.style.display = 'block';
 		
 			//! A contagem regressiva inicial é executada com uma função de
@@ -120,7 +120,7 @@ function Cronometro_Ativo()
 {
 	//_LOG_INI( "botoes.js", arguments.callee.name, arguments );
 
-	var cronometro = document.getElementById("int_Cronometro");
+	var cronometro = _ByID("int_Cronometro");
 		cronometro.style.color = "black";
 		
 	clearInterval(Cronometro_Piscando);
@@ -142,7 +142,7 @@ function Cronometro_Piscar()
 {
   //_LOG_INI( "botoes.js", arguments.callee.name, arguments );
 
-  var int_Cronometro = document.getElementById('int_Cronometro');
+  var int_Cronometro = _ByID('int_Cronometro');
   var Vrm_Azl = ['red', 'blue'];
   var indice = 0;
 
@@ -164,7 +164,7 @@ function Cronometro_Piscar()
  *! @throws 
  * @summary 
  */
-// var resetButton = document.getElementById('resetBtn');
+// var resetButton = _ByID('resetBtn');
 // resetButton.addEventListener('click', function() { ... } );
 function Reiniciar()
 {
@@ -174,19 +174,19 @@ function Reiniciar()
 /*
     Crono_Parar();
 
-    document.getElementById("Acertos").innerHTML = "";
-    document.getElementById("Erros").innerHTML = "";
+    _ByID("Acertos").innerHTML = "";
+    _ByID("Erros").innerHTML = "";
 
     Mestre.Atualiz_Tela = null;
     Palavra_Atual = undefined;
     atualizando_palavra = false;
-    document.getElementById('int_3_2_1').textContent = 3;
+    _ByID('int_3_2_1').textContent = 3;
     
     // Clear the canvas
-    draw();
+    Desenhar_Palavra();
     
     // Set score to 0
-    document.getElementById('int_Pontuacao').textContent = '0';
+    _ByID('int_Pontuacao').textContent = '0';
 	
 */
 }
